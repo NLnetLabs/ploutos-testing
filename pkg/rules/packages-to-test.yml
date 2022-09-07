@@ -1,0 +1,9 @@
+---
+pkg:
+  - "my_test"
+image:
+  - "ubuntu:jammy" # ubuntu/22.04
+mode:
+  - "fresh-install"
+target:
+  - "x86_64"
