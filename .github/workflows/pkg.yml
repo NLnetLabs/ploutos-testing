@@ -68,7 +68,7 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
       cross_targets: ${{ needs.prepare.outputs.cross_targets }}
-      cross_build_args: --features static-openssl
+      cross_build_args: --no-default-features
       packages_to_build: ${{ needs.prepare.outputs.packages_to_build }}
       packages_to_test: ${{ needs.prepare.outputs.packages_to_test }}
       docker_images_to_build: ${{ needs.prepare.outputs.docker_images_to_build }}
