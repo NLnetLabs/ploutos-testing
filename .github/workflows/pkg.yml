@@ -62,7 +62,7 @@ jobs:
 
   package:
     needs: prepare
-    uses: ximon18/.github/.github/workflows/pkg.yml@main
+    uses: ximon18/.github/.github/workflows/pkg.yml@v0.0.1
     secrets: inherit
     with:
       docker_org: ximoneighteen
