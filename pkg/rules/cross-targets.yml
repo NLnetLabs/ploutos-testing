@@ -1,0 +1,5 @@
+---
+# must be one of: https://github.com/cross-rs/cross#supported-targets
+# use MUSL targets for binaries intended to be included in Docker images
+# as the Alpine base image we use has MUSL, not GNU LIBC.
+- 'arm-unknown-linux-musleabihf'    # for Docker
