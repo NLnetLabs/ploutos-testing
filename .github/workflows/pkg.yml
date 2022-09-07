@@ -25,6 +25,9 @@ jobs:
       packages_to_build: ${{ steps.packages_to_build.outputs.data }}
       packages_to_test: ${{ steps.packages_to_test.outputs.data }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
       - name: Load cross targets
         uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
         id: cross_targets
