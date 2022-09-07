@@ -1,15 +1,5 @@
 name: Packaging
 
-env:
-  # Using Docker Hub terminology such that Docker image nlnetlabs/krill:v0.1.2-arm64
-  # where:
-  #   - The Organization would be 'nlnetlabs'.
-  #   - The Repository would be 'krill'.
-  #   - The tag would be v0.1.2-arm64
-  # Collectively I refer to the combination of <org>/<repo>:<tag> as the 'image' name,
-  DOCKER_ORG: ${{ github.repository_owner }}
-  DOCKER_REPO: krill
-
 on:
   push:
     branches:
@@ -72,8 +62,8 @@ jobs:
     uses: ximon18/.github/.github/workflows/pkg.yml@main
     secrets: inherit
     with:
-      docker_org: ${{ env.DOCKER_ORG }}
-      docker_repo: ${{ env.DOCKER_REPO }}
+      docker_org: ximoneighteen
+      docker_repo: ximontest
       cross_targets: ${{ needs.prepare.outputs.cross_targets }}
       cross_build_args: --features static-openssl
       packages_to_build: ${{ needs.prepare.outputs.packages_to_build }}
