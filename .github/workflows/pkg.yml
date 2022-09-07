@@ -1,0 +1,85 @@
+name: Packaging
+
+env:
+  # Using Docker Hub terminology such that Docker image nlnetlabs/krill:v0.1.2-arm64
+  # where:
+  #   - The Organization would be 'nlnetlabs'.
+  #   - The Repository would be 'krill'.
+  #   - The tag would be v0.1.2-arm64
+  # Collectively I refer to the combination of <org>/<repo>:<tag> as the 'image' name,
+  DOCKER_ORG: ${{ github.repository_owner }}
+  DOCKER_REPO: krill
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+
+# Triggering on PRs and arbitrary branch pushes is not enabled because most of the time only the CI build should be
+  # triggered, not the packaging build. In cases where you want to test changes to this workflow this trigger enables
+  # you to manually invoke this workflow on an arbitrary branch as needed.
+  workflow_dispatch:
+
+defaults:
+  run:
+    # see: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell
+    shell: bash --noprofile --norc -eo pipefail -x {0}
+
+jobs:
+  prepare:
+    runs-on: ubuntu-20.04
+    outputs:
+      cross_targets: ${{ steps.cross_targets.outputs.data }}
+      packages_to_build: ${{ steps.packages_to_build.outputs.data }}
+      packages_to_test: ${{ steps.packages_to_test.outputs.data }}
+    steps:
+      - name: Load cross targets
+        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
+        id: cross_targets
+        with:
+          path: pkg/rules/cross-targets.yml
+          from: yaml
+          to: json
+
+      - name: Load packages to build
+        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
+        id: packages_to_build
+        with:
+          path: pkg/rules/packages-to-build.yml
+          from: yaml
+          to: json
+
+      - name: Load packages to test
+        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
+        id: packages_to_test
+        with:
+          path: pkg/rules/packages-to-test.yml
+          from: yaml
+          to: json
+
+      - name: Load Docker images to build
+        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
+        id: docker_images_to_build
+        with:
+          path: pkg/rules/docker-images-to-build.yml
+          from: yaml
+          to: json
+
+  package:
+    needs: prepare
+    uses: ximon18/.github/.github/workflows/pkg.yml@main
+    secrets: inherit
+    with:
+      docker_org: ${{ env.DOCKER_ORG }}
+      docker_repo: ${{ env.DOCKER_REPO }}
+      cross_targets: ${{ needs.prepare.outputs.cross_targets }}
+      cross_build_args: --features static-openssl
+      packages_to_build: ${{ needs.prepare.outputs.packages_to_build }}
+      packages_to_test: ${{ needs.prepare.outputs.packages_to_test }}
+      docker_images_to_build: ${{ needs.prepare.outputs.docker_images_to_build }}
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+      test_script_base_path: pkg/test-scripts/test
