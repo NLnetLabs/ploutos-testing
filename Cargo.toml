@@ -27,3 +27,6 @@ systemd-units = { unit-name = "my_test", unit-scripts = "pkg/common", enable = f
 
 [package.metadata.deb.variants.ubuntu-jammy]
 depends = "$auto, passwd, libssl3"
+
+[package.metadata.deb.variants.debian-buster-arm-unknown-linux-gnueabihf]
+depends = "adduser, passwd, libc6 (>= 2.28), libssl1.1"
