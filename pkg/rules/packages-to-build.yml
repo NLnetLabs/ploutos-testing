@@ -1,6 +1,6 @@
 ---
 pkg:
-  - "my_test"
+  - "mytest"
 image:
   - "ubuntu:jammy" # ubuntu/22.04
 target:
@@ -8,6 +8,6 @@ target:
 include:
   # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
   # Raspbian 10 is based.
-  - pkg: "my_test"
+  - pkg: "mytest"
     image: "debian:buster"
     target: "arm-unknown-linux-gnueabihf"

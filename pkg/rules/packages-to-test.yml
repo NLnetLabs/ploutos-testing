@@ -1,6 +1,6 @@
 ---
 pkg:
-  - "my_test"
+  - "mytest"
 image:
   - "ubuntu:jammy" # ubuntu/22.04
 mode:

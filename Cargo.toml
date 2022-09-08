@@ -1,17 +1,17 @@
 [package]
 name = "hello_cargo"
-description = "Blah"
+description = "So apparently this needs to be longer or Lintian gets unhappy."
 license = "MIT"
 version = "0.1.0"
 edition = "2021"
-authors = ["Boo"]
+authors = ["This Needs To Be A Name <and_an@email.address>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 
 [package.metadata.deb]
-name = "my_test"
+name = "mytest"
 priority = "optional"
 section = "net"
 extended-description-file = "pkg/debian/description.txt"
@@ -23,7 +23,7 @@ copyright = "Copyright (c) 2022, Ximon Eighteen. All rights reserved."
 assets = [
     ["target/release/hello_cargo", "/usr/bin/hello_cargo", "755"],
 ]
-systemd-units = { unit-name = "my_test", unit-scripts = "pkg/common", enable = false }
+systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = false }
 
 [package.metadata.deb.variants.ubuntu-jammy]
 depends = "$auto, passwd, libssl3"
