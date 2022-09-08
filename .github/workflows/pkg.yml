@@ -61,7 +61,7 @@ jobs:
           from: yaml
           to: json
 
-      - name: check
+      - name: Report loaded matrices
         run: |
           echo "Cross targets:"
           echo ${{ steps.cross_targets.outputs.data }}
