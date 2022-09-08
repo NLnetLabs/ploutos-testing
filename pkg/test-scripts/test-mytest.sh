@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env -S bash -eo pipefail -x
 case $1 in
   post-install)
     echo "POST INSTALL"
