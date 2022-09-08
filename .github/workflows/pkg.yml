@@ -61,7 +61,7 @@ jobs:
           from: yaml
           to: json
 
-      - check:
+      - name: check
         run: |
           echo "Cross targets:"
           echo ${{ steps.cross_targets.outputs.data }}
