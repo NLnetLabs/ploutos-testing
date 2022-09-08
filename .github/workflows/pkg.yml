@@ -18,77 +18,20 @@ defaults:
     shell: bash --noprofile --norc -eo pipefail -x {0}
 
 jobs:
-  prepare:
-    runs-on: ubuntu-20.04
-    outputs:
-      cross_targets: ${{ steps.cross_targets.outputs.data }}
-      packages_to_build: ${{ steps.packages_to_build.outputs.data }}
-      packages_to_test: ${{ steps.packages_to_test.outputs.data }}
-      docker_images_to_build: ${{ steps.docker_images_to_build.outputs.data }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-
-      - name: Load cross targets
-        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
-        id: cross_targets
-        with:
-          path: pkg/rules/cross-targets.yml
-          from: yaml
-          to: json
-
-      - name: Load packages to build
-        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
-        id: packages_to_build
-        with:
-          path: pkg/rules/packages-to-build.yml
-          from: yaml
-          to: json
-
-      - name: Load packages to test
-        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
-        id: packages_to_test
-        with:
-          path: pkg/rules/packages-to-test.yml
-          from: yaml
-          to: json
-
-      - name: Load Docker images to build
-        uses: fabasoad/yaml-json-xml-converter-action@v1.0.14
-        id: docker_images_to_build
-        with:
-          path: pkg/rules/docker-images-to-build.yml
-          from: yaml
-          to: json
-
-      - name: Report loaded matrices
-        run: |
-          echo "Cross targets:"
-          echo ${{ steps.cross_targets.outputs.data }}
-
-          echo "Packages to build:"
-          echo ${{ steps.packages_to_build.outputs.data }}
-
-          echo "Packages to test:"
-          echo ${{ steps.packages_to_test.outputs.data }}
-
-          echo "Docker images to build:"
-          echo ${{ steps.docker_images_to_build.outputs.data }}
-
-
   package:
-    needs: prepare
     uses: ximon18/.github/.github/workflows/pkg.yml@main
     secrets: inherit
     with:
       docker_org: ximoneighteen
       docker_repo: ximontest
-      cross_targets: ${{ needs.prepare.outputs.cross_targets }}
+
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      pkg_build_rules_path: pkg/rules/packages-to-build.yml
+      pkg_test_rules_path: pkg/rules/packages-to-test.yml
+      pkg_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
       cross_build_args: --no-default-features
-      packages_to_build: ${{ needs.prepare.outputs.packages_to_build }}
-      packages_to_test: ${{ needs.prepare.outputs.packages_to_test }}
-      docker_images_to_build: ${{ needs.prepare.outputs.docker_images_to_build }}
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       rpm_extra_build_packages: openssl-devel
-      test_script_base_path: pkg/test-scripts/test
