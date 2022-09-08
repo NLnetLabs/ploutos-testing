@@ -24,6 +24,7 @@ jobs:
       cross_targets: ${{ steps.cross_targets.outputs.data }}
       packages_to_build: ${{ steps.packages_to_build.outputs.data }}
       packages_to_test: ${{ steps.packages_to_test.outputs.data }}
+      docker_images_to_build: ${{ steps.docker_images_to_build.outputs.data }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
@@ -59,6 +60,21 @@ jobs:
           path: pkg/rules/docker-images-to-build.yml
           from: yaml
           to: json
+
+      - check:
+        run: |
+          echo "Cross targets:"
+          echo ${{ steps.cross_targets.outputs.data }}
+
+          echo "Packages to build:"
+          echo ${{ steps.packages_to_build.outputs.data }}
+
+          echo "Packages to test:"
+          echo ${{ steps.packages_to_test.outputs.data }}
+
+          echo "Docker images to build:"
+          echo ${{ steps.docker_images_to_build.outputs.data }}
+
 
   package:
     needs: prepare
