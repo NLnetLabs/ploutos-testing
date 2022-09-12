@@ -6,7 +6,7 @@ on:
 
 jobs:
   package:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@bb0aac836f26d5d10ea38aa7937637d3b1401778
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
