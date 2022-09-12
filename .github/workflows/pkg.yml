@@ -2,19 +2,11 @@ name: Packaging
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - v*
-
-  # Triggering on PRs and arbitrary branch pushes is not enabled because most of the time only the CI build should be
-  # triggered, not the packaging build. In cases where you want to test changes to this workflow this trigger enables
-  # you to manually invoke this workflow on an arbitrary branch as needed.
   workflow_dispatch:
 
 jobs:
   package:
-    uses: ximon18/.github/.github/workflows/pkg.yml@main
+    uses: NLnetLabs/.github/.github/workflows/pkg.yml@master
     secrets: inherit
     with:
       docker_org: ximoneighteen
