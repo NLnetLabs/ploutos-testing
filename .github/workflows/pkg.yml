@@ -96,9 +96,9 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
-      package_build_rules_path: pkg/rules/packages-to-build.yml
-      package_test_rules_path: pkg/rules/packages-to-test.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build-no-cross.yml
+      package_build_rules_path: pkg/rules/packages-to-build-no-cross.yml
+      package_test_rules_path: pkg/rules/packages-to-test-no-cross.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev

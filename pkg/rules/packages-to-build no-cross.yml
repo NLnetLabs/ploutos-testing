@@ -1,0 +1,7 @@
+---
+pkg:
+  - "mytest"
+image:
+  - "ubuntu:jammy" # ubuntu/22.04
+target:
+  - "x86_64"
