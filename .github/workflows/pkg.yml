@@ -25,11 +25,24 @@ jobs:
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       rpm_extra_build_packages: openssl-devel
 
-  package_without_docker:
+  package_missing_docker_credentials:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
     with:
       cross_build_rules_path: pkg/rules/cross-targets.yml
       docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      package_build_rules_path: pkg/rules/packages-to-build.yml
+      package_test_rules_path: pkg/rules/packages-to-test.yml
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
+      cross_build_args: --no-default-features
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+
+  package_without_docker:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    with:
+      cross_build_rules_path: pkg/rules/cross-targets.yml
       package_build_rules_path: pkg/rules/packages-to-build.yml
       package_test_rules_path: pkg/rules/packages-to-test.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
