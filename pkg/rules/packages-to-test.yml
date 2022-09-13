@@ -13,3 +13,4 @@ include:
   - pkg: "mytest"
     image: "debian:buster"
     target: "arm-unknown-linux-gnueabihf"
+    mode: "fresh-install"
