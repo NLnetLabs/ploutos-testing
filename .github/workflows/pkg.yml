@@ -6,12 +6,8 @@ on:
 
 jobs:
   package:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
-    secrets: inherit
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
     with:
-      docker_org: ximoneighteen
-      docker_repo: ximontest
-
       cross_build_rules_path: pkg/rules/cross-targets.yml
       docker_build_rules_path: pkg/rules/docker-images-to-build.yml
       package_build_rules_path: pkg/rules/packages-to-build.yml
