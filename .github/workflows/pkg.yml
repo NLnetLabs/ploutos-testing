@@ -8,7 +8,7 @@ on:
 
 jobs:
   full_package:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
     secrets: inherit
     with:
       docker_org: ximoneighteen
