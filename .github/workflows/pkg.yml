@@ -26,7 +26,7 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   package_without_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
     with:
       cross_build_rules_path: pkg/rules/cross-targets.yml
       docker_build_rules_path: pkg/rules/docker-images-to-build.yml
