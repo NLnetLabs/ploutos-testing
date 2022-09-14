@@ -3,6 +3,7 @@ pkg:
   - "mytest"
 image:
   - "ubuntu:jammy" # ubuntu/22.04
+  - "debian:stretch"
 target:
   - "x86_64"
 include:

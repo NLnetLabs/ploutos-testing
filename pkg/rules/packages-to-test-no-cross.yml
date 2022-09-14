@@ -3,7 +3,6 @@ pkg:
   - "mytest"
 image:
   - "ubuntu:jammy" # ubuntu/22.04
-  - "debian:stretch" # should get excluded because the LXC image no longer exists
 mode:
   - "fresh-install"
 target:

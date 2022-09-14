@@ -16,10 +16,6 @@
 #   cargo_args:  (optional) can be used when testing, e.g. set to '--no-default-features' to speed up the Krill
 #                build.
 include:
-  - platform: "linux/arm/v6"
-    shortname: "armv6"
-    crosstarget: "arm-unknown-linux-musleabihf"
-    mode: "copy"
   - platform: "linux/amd64"
     shortname: "amd64"
     mode: "build"
