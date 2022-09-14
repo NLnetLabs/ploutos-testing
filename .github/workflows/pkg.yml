@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -26,10 +26,10 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   minimal:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
 
   no_test_scripts:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -46,7 +46,7 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   no_tests:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -63,7 +63,7 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   no_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     with:
       cross_build_rules_path: pkg/rules/cross-targets.yml
       package_build_rules_path: pkg/rules/packages-to-build.yml
@@ -76,7 +76,7 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   only_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -88,7 +88,7 @@ jobs:
       cross_build_args: --no-default-features
 
   no_cross:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@fix_docker_org_is_required
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
