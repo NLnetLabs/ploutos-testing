@@ -7,10 +7,98 @@ on:
 # TODO: Use a matrix here for the different permutations of settings to invoke the reusable workflow with?
 
 jobs:
-  no_cross:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@job-summaries-test
+  full:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
     secrets: inherit
     with:
       docker_org: ximoneighteen
       docker_repo: ximontest
+
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      package_build_rules_path: pkg/rules/packages-to-build.yml
+      package_test_rules_path: pkg/rules/packages-to-test.yml
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
+      cross_build_args: --no-default-features
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+
+  minimal:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+
+  no_test_scripts:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    secrets: inherit
+    with:
+      docker_org: ximoneighteen
+      docker_repo: ximontest
+
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      package_build_rules_path: pkg/rules/packages-to-build.yml
+      package_test_rules_path: pkg/rules/packages-to-test.yml
+
+      cross_build_args: --no-default-features
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+
+  no_tests:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    secrets: inherit
+    with:
+      docker_org: ximoneighteen
+      docker_repo: ximontest
+
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      package_build_rules_path: pkg/rules/packages-to-build.yml
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
+      cross_build_args: --no-default-features
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+
+  no_docker:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    with:
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      package_build_rules_path: pkg/rules/packages-to-build.yml
+      package_test_rules_path: pkg/rules/packages-to-test.yml
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
+      cross_build_args: --no-default-features
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
+
+  only_docker:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    secrets: inherit
+    with:
+      docker_org: ximoneighteen
+      docker_repo: ximontest
+
+      cross_build_rules_path: pkg/rules/cross-targets.yml
+      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+
+      cross_build_args: --no-default-features
+
+  no_cross:
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1
+    secrets: inherit
+    with:
+      docker_org: ximoneighteen
+      docker_repo: ximontest
+
       docker_build_rules_path: pkg/rules/docker-images-to-build-no-cross.yml
+      package_build_rules_path: pkg/rules/packages-to-build-no-cross.yml
+      package_test_rules_path: pkg/rules/packages-to-test-no-cross.yml
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
+
+      deb_extra_build_packages: libssl-dev
+      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+      rpm_extra_build_packages: openssl-devel
