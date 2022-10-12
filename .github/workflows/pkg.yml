@@ -46,7 +46,7 @@ jobs:
       rpm_extra_build_packages: openssl-devel
 
   no_tests:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml22-support-updating-the-readme-at-docker-hub
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@22-support-updating-the-readme-at-docker-hub
     secrets: inherit
     with:
       docker_org: ximoneighteen
