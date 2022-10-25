@@ -5,7 +5,7 @@ image:
   - "ubuntu:jammy" # ubuntu/22.04
   - "debian:stretch"
   - 'centos:7'
-  - 'rockylinux:8'    # compatible with EOL centos:8
+  - 'centos:8'    # compatible with EOL centos:8
 target:
   - "x86_64"
 include:
