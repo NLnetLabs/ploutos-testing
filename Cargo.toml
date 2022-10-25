@@ -30,3 +30,17 @@ depends = "$auto, passwd, libssl3"
 
 [package.metadata.deb.variants.debian-buster-arm-unknown-linux-gnueabihf]
 depends = "adduser, passwd, libc6 (>= 2.28), libssl1.1"
+
+[package.metadata.generate-rpm]
+license = "BSD"
+assets = [
+    { source = "target/release/hello_cargo", dest = "/usr/bin/hello_cargo", mode = "755" },
+]
+# These get set using cargo-generate-rpm --set-metadata at package build time.
+#post_install_script = ...
+#pre_uninstall_script = ...
+#post_uninstall_script = ...
+
+# ensure that the useradd is present by requiring the package that provides it
+[package.metadata.generate-rpm.requires]
+shadow-utils = "*"
