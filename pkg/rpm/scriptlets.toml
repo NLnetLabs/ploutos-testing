@@ -42,6 +42,7 @@ if [ $1 -eq 0 ] ; then
     # Package removal, not upgrade
     #systemctl --no-reload disable my_test.service > /dev/null 2>&1 || :
     #systemctl stop my_test.service > /dev/null 2>&1 || :
+    echo "Dummy pre-uninstall action"
 fi
 '''
 
@@ -53,5 +54,6 @@ post_uninstall_script = '''
 systemctl daemon-reload >/dev/null 2>&1 || :
 if [ $1 -ge 1 ] ; then
     #systemctl try-restart my_test.service >/dev/null 2>&1 || :
+    echo "Dummy post-uninstall action"
 fi
 '''
