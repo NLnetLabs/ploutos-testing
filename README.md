@@ -8,7 +8,7 @@ This repository:
 
 2. Can be used by **YOU** as a template when creating a new GitHub repository to create a repository that is (almost) ready out-of-the-box to package a Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow). _**Tip:** Click the "Use this template" button at the top of the index page of this repository. Leave the "Include all branches" box UNTICKED!_
 
-3. Can be used as a reference when configuring an existing GitHub Rust repository to package the existing Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow).
+3. Can be used by **YOU** as a reference when configuring an existing GitHub Rust repository to package the existing Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow).
 
 ## Building your own Rust application using this template
 
