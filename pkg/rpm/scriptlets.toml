@@ -29,7 +29,7 @@ if [ $1 -eq 1 ] ; then
     # Ensure that the home directory has the correct permissions
     chmod ${R_HOME_DIR_PERMS} ${R_HOME_DIR}
     
-    #systemctl preset my_test.service 2>&1 || :
+    systemctl preset my_test.timer 2>&1 || :
 fi
 '''
 
@@ -40,9 +40,8 @@ pre_uninstall_script = '''
 #   - https://cgit.freedesktop.org/systemd/systemd/tree/src/core/macros.systemd.in
 if [ $1 -eq 0 ] ; then
     # Package removal, not upgrade
-    #systemctl --no-reload disable my_test.service > /dev/null 2>&1 || :
-    #systemctl stop my_test.service > /dev/null 2>&1 || :
-    echo "Dummy pre-uninstall action"
+    systemctl --no-reload disable my_test.timer > /dev/null 2>&1 || :
+    systemctl stop my_test.timer > /dev/null 2>&1 || :
 fi
 '''
 
@@ -53,7 +52,6 @@ post_uninstall_script = '''
 #   - https://cgit.freedesktop.org/systemd/systemd/tree/src/core/macros.systemd.in
 systemctl daemon-reload >/dev/null 2>&1 || :
 if [ $1 -ge 1 ] ; then
-    #systemctl try-restart my_test.service >/dev/null 2>&1 || :
-    echo "Dummy post-uninstall action"
+    systemctl try-restart my_test.timer >/dev/null 2>&1 || :
 fi
 '''

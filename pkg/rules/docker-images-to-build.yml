@@ -10,11 +10,12 @@
 #                see also:
 #                  https://stackoverflow.com/a/70889505
 #   shortname:   used by us to tag the architecture specific "manifest" image.
-#   crosstarget: (optional) used to download the correct cross-compiled binary that was produced earlier by the
-#                'cross' job above.
-#   mode:        (optional) set to 'copy' for cross-compiled targets.
-#   cargo_args:  (optional) can be used when testing, e.g. set to '--no-default-features' to speed up the Krill
-#                build.
+#   crosstarget: (optional) uUed to download the correct cross-compiled binary GitHub Actions artifact. Only used when
+#                'mode' is 'copy'.
+#   mode:        (optional) 'copy' (for cross-compiled targets) or 'build' (default). Passed through to the Dockerfile
+#   cargo_args:  (optional) Pan be used when testing, e.g. set to '--no-default-features' to speed up the Krill
+#                build. Passed through to the Dockerfile as build arg 'CARGO_ARGS'.
+#
 include:
   - platform: "linux/arm/v6"
     shortname: "armv6"

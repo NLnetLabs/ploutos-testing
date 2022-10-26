@@ -1,4 +1,26 @@
 ---
+# matrix field notes:
+#   pkg:         Used in multiple places:
+#                  - as the DEB changelog file package name.
+#                  - to select [package.metadata.deb_alt_base_<pkg>] as an alternate base to inherit from in Cargo.toml.
+#                  - similarly to select [package.metadata.generate-rpm-alt-base-<pkg>] but for RPMs instead of DEBs.
+#                  - in the `target/rpm/<pkg>.service` path to which the `systemd_service_unit_file` will be copied.
+#                  - to form a `<pkg>_<os_name>_<os_rel>_<target>` GitHub Actions artifact filename. `<os_name>` and
+#                    `<os_rel>` are derived from matrix field `image`. `<target>` comes from matrix field `target`.
+#   image:       Has the form <os_name>:<os_rel>. Specifies the LXC `images:<os_name>/<os_rel>/cloud` image used for
+#                installing and testing the downloaded GitHub Actions artifact package file, to decide whether to use
+#                'apt-get' or 'yum' commands, and to determine which, if any, workarounds and O/S name/rel specific
+#                behaviours to apply. Note in particular that for image 'centos:8' a Rocky Linux 8 LXC image will be
+#                used as a CentOS 8 image is no longer available from images.linuxcontainers.org. Also note that for
+#                'debian' and 'ubuntu' images the package will be installed using apt-get dpkg options --force-confdef
+#                and --force-confold.
+#   target:      Used to download the correct GitHub Actions artifact package file to install.
+#   mode:        Either 'fresh-install' or 'upgrade-from-published'
+#
+# artifacts:
+#   input:       Expects a GitHub Actions artifact named '<pkg>_<os_name>_<os_rel>_<target>' to exist which contains
+#                the package to install.
+#
 pkg:
   - "mytest"
 image:
