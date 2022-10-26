@@ -49,8 +49,8 @@ assets = [
     # add it manually as an asset. To support different service unit files for different "variants" defined in this
     # file the NLnet Labs Rust Cargo Packaging workflow copies the file specified by setting `systemd_service_unit_file`
     # variable in the `package_build_rules` matrix to `target/rpm/mytest.*` (where `pkg` is also a matrix variable).
-    { source = "target/rpm/mytest.service", dest = "/lib/systemd/system/mytest.service", mode = "644" },
-    { source = "target/rpm/mytest.timer", dest = "/lib/systemd/system/mytest.timer", mode = "644" },
+    { source = "target/rpm/mytest.mytest.service", dest = "/lib/systemd/system/mytest.service", mode = "644" },
+    { source = "target/rpm/mytest.mytest.timer", dest = "/lib/systemd/system/mytest.timer", mode = "644" },
 ]
 # These get set using cargo-generate-rpm --set-metadata at package build time.
 #post_install_script = ...
