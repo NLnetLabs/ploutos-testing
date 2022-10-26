@@ -22,11 +22,24 @@ NOTE: A GitHub Actions `pkg` workflow will be run automatically in the new repos
 
 3. Edit (in your new repository!) `.github/workflow/pkg.yml` choosing one of the various example invocations of [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow) contained therein by deleting or commenting out the others that you do not wish to use.
 
-4. If you choose an example that publishes to Docker Hub you will need to replace `secrets: inherit` with:
+4. If you choose an example that publishes to Docker Hub you will need to replace:
+
+```yaml
+secrets: inherit
+with:
+  docker_org: ximoneighteen
+  docker_repo: ximontest
+```
+
+With:
+
 ```yaml
 secrets:
-  DOCKER_HUB_ID: 'your Docker Hub id'
+  DOCKER_HUB_ID: your_Docker_Hub_id
   DOCKER_HUB_TOKEN: ${{ secrets.YOUR_DOCKER_HUB_TOKEN_SECRET_NAME }}
+with:
+  docker_org: your_docker_org_name
+  docker_repo: your_docker_repo_name
 ```
 
 NOTE: To create a Docker Hub access token see https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token.
