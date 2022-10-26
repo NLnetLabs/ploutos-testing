@@ -2,21 +2,21 @@
 
 ## Welcome
 
-This repository serves several purposes:
+This repository:
 
-1. It can be used as a template when creating a new GitHub repository to create a repository that is (almost) ready out-of-the-box to package a Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow). _**Tip:** Click the "Use this template" button at the top of the index page of this repository!_
+1. Is used by **NLnet Labs** to test proposed changes to the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow) prior to release. To fully test both "development" and "release" specific behaviours of the NLnet Labs Rust Cargo Packaging workflow, proposed changes are tested by creating a branch in this repository which invokes the not-yet-released-branch of the NLnet Labs Rust Cargo Packaging workflow, then the branch is merged to `main` and tagged as would happen in normal use by a client repository making use of the NLnet Labs Rust Cargo Packaging workflow.
 
-2. It can be used as a reference when configuring an existing GitHub Rust repository to package the existing Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow).
+2. Can be used by **YOU** as a template when creating a new GitHub repository to create a repository that is (almost) ready out-of-the-box to package a Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow). _**Tip:** Click the "Use this template" button at the top of the index page of this repository. Leave the "Include all branches" box UNTICKED!_
 
-3. It is used for testing changes to the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow).
+3. Can be used as a reference when configuring an existing GitHub Rust repository to package the existing Rust application using the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow).
 
 ## Building your own Rust application using this template
 
-As stated above this repository can be used to create a new GitHub repository based on this one. To do so you should:
+To create a new GitHub repository based on this one as a template:
 
 1. Click the "Use this template" button at the top of the index page of this repository.
 
-2. Fill in the form and watch the new repository being created.
+2. Fill in the form that appears and watch the new repository being created.
 
 NOTE: A GitHub Actions `pkg` workflow will be run automatically in the new repository and **WILL FAIL**. This is because it expects but lacks two special secrets to be defined in the GitHub repository settings: `DOCKER_HUB_ID` and `DOCKER_HUB_TOKEN`. You only have to create those secrets if you want to package and publish your application to Docker Hub.
 
@@ -44,6 +44,6 @@ with:
 
 NOTE: To create a Docker Hub access token see https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token.
 
-5. Replace the sample `Cargo.toml` file and `src` directory with your own Rust application.
+5. Replace the sample `Cargo.toml` file and `src` directory with your own Rust application. Refer to the `Cargo.toml` in this repository for examples on how to configure the packaging process.
 
-6. Edit the various files referenced by your `pkg.yml` and your `Cargo.toml`, which are mostly under the `pkg` directory.
+6. Edit the various files referenced by your `pkg.yml` and your `Cargo.toml`, which are mostly under the `pkg` directory. Refer to the `pkg/` files in this repository to see what sort of content these files should contain.
