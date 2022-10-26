@@ -20,7 +20,7 @@ To create a new GitHub repository based on this one as a template:
 
 NOTE: A GitHub Actions `pkg` workflow will be run automatically in the new repository and **WILL FAIL**. This is because it expects but lacks two special secrets to be defined in the GitHub repository settings: `DOCKER_HUB_ID` and `DOCKER_HUB_TOKEN`. You only have to create those secrets if you want to package and publish your application to Docker Hub.
 
-3. Edit (in your new repository!) `.github/workflow/pkg.yml` choosing one of the various example invocations of [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow) contained therein by deleting or commenting out the others that you do not wish to use.
+3. Edit (in your new repository!) `.github/workflow/pkg.yml`. The multiple `jobs` defined within each invoke the [NLnet Labs Rust Cargo Packaging workflow](https://github.com/NLnetLabs/.github/blob/main/docs/README.md#the-rust-cargo-packaging-starter-workflow) with various different inputs showcasing and testing different use cases supported by the workflow. Choose the example that best matches your use case and comemnt out or delete the others.
 
 4. If you choose an example that publishes to Docker Hub you will need to replace:
 
