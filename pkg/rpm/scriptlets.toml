@@ -42,11 +42,12 @@ pre_uninstall_script = '''
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/systemd-update-helper.in
 if [ $1 -eq 0 ] ; then
     # Package removal, not upgrade
-        if [ -d /run/systemd/system ]; then
-            systemctl --no-reload disable --now "mytest.timer"
-        else
-            systemctl --no-reload disable "mytest.timer"
-        fifi
+    if [ -d /run/systemd/system ]; then
+        systemctl --no-reload disable --now "mytest.timer"
+    else
+        systemctl --no-reload disable "mytest.timer"
+    fi
+fi
 '''
 
 post_uninstall_script = '''
@@ -55,8 +56,12 @@ post_uninstall_script = '''
 #   - https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/#_systemd
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/macros.systemd.in
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/systemd-update-helper.in
-systemctl daemon-reload >/dev/null 2>&1 || :
 if [ $1 -ge 1 ] ; then
-    systemctl try-restart mytest.timer >/dev/null 2>&1 || :
+    [ -d /run/systemd/system ] || exit 0
+
+    for unit in "$@"; do
+        systemctl set-property "$unit" Markers=+needs-restart &
+    done
+    wait
 fi
 '''
