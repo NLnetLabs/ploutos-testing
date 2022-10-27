@@ -114,9 +114,9 @@ systemd_update_helper_v239() {
 
 systemd_update_helper_v219() {
     case "$command" in
-        install-system-units)
+        remove-system-units)
             systemctl --no-reload disable "$@" > /dev/null 2>&1
-            systemctl stop %{?*} > /dev/null 2>&1
+            systemctl stop "$@" > /dev/null 2>&1
             ;;
 
         system-reload)
