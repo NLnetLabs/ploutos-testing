@@ -95,6 +95,23 @@ if [ $1 -eq 1 ] ; then
     # Run commands equivalent what the RPM systemd macros would do
     systemd_post mytest.timer
     systemd_triggers
+
+    # Force the new service to be activated immediately post-install. This goes against Fedora policy as Fedora says
+    # the distribution and system operator decide which services should be activated automatically by way of systemd
+    # preset files. E.g. the `systemd.preset` man page says:
+    #
+    #   It is not recommended to ship preset files within the respective software packages implementing the units, but
+    #   rather centralize them in a distribution or spin default policy, which can be amended by administrator policy,
+    #   see below.
+    #
+    #   If no preset files exist, preset operations will enable all units that are installed by default. If this is not
+    #   desired and all units shall rather be disabled, it is necessary to ship a preset file with a single, catchall
+    #   "disable *" line. (See example 1, below.)
+    #
+    #   From: https://www.freedesktop.org/software/systemd/man/systemd.preset.html#Description
+    #
+    # Fedora 36 for example has such a "catchall" "disable *" preset policy.
+    systemctl enable --now mytest.timer
 fi
 '''
 
