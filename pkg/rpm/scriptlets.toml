@@ -111,6 +111,7 @@ if [ $1 -eq 1 ] ; then
     #   From: https://www.freedesktop.org/software/systemd/man/systemd.preset.html#Description
     #
     # Fedora 36 for example has such a "catchall" "disable *" preset policy.
+    # See also: https://stackoverflow.com/a/45058741
     systemctl enable --now mytest.timer
 fi
 '''
