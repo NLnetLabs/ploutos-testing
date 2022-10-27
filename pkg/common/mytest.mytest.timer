@@ -2,8 +2,8 @@
 Description=Run MyTest periodically
 
 [Timer]
-OnUnitActiveSec=60s
-OnBootSec=60s
+OnUnitActiveSec=2s
+OnBootSec=2s
 
 [Install]
 WantedBy=timers.target
