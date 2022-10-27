@@ -3,7 +3,46 @@ post_install_script = '''
 # Script based on the RPM %systemd_post scriptlet. See:
 #   - https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/#_systemd
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/macros.systemd.in
+#   - https://github.com/systemd/systemd/blob/main/src/rpm/triggers.systemd.in
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/systemd-update-helper.in
+systemd_update_helper() {
+    command="${1:?}"
+    shift
+    
+    command -v systemctl >/dev/null || exit 0
+
+    case "$command" in
+        install-system-units)
+            systemctl --no-reload preset "$@"
+            ;;
+
+        system-reload-restart|system-reload|system-restart)
+            if [ -n "$*" ]; then
+                echo "Unexpected arguments for '$command': $*"
+                exit 2
+            fi
+    
+            [ -d /run/systemd/system ] || exit 0
+    
+            if [[ "$command" =~ reload ]]; then
+                systemctl daemon-reload
+            fi
+    
+            if [[ "$command" =~ restart ]]; then
+                systemctl reload-or-restart --marked
+            fi
+            ;;
+    esac
+}
+
+systemd_triggers() {
+    systemd_update_helper system-reload-restart
+}
+
+systemd_post() {
+    systemd_update_helper install-system-units "$@"
+}
+
 if [ $EUID -ne 0 ]; then
     echo >&2 "ERROR: postinst script must be run as root"
     exit 1
@@ -29,8 +68,10 @@ if [ $1 -eq 1 ] ; then
 
     # Ensure that the home directory has the correct permissions
     chmod ${R_HOME_DIR_PERMS} ${R_HOME_DIR}
-    
-    systemctl --no-reload preset "mytest.timer"
+
+    # Run commands equivalent what the RPM systemd macros would do
+    systemd_post mytest.timer
+    systemd_triggers
 fi
 '''
 
@@ -39,14 +80,55 @@ pre_uninstall_script = '''
 # Script based on the RPM %systemd_preun scriptlet. See:
 #   - https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/#_systemd
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/macros.systemd.in
+#   - https://github.com/systemd/systemd/blob/main/src/rpm/triggers.systemd.in
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/systemd-update-helper.in
+systemd_update_helper() {
+    command="${1:?}"
+    shift
+    
+    command -v systemctl >/dev/null || exit 0
+
+    case "$command" in
+        remove-system-units)
+            if [ -d /run/systemd/system ]; then
+                systemctl --no-reload disable --now "$@"
+            else
+                systemctl --no-reload disable "$@"
+            fi
+            ;;
+
+        system-reload-restart|system-reload|system-restart)
+            if [ -n "$*" ]; then
+                echo "Unexpected arguments for '$command': $*"
+                exit 2
+            fi
+    
+            [ -d /run/systemd/system ] || exit 0
+    
+            if [[ "$command" =~ reload ]]; then
+                systemctl daemon-reload
+            fi
+    
+            if [[ "$command" =~ restart ]]; then
+                systemctl reload-or-restart --marked
+            fi
+            ;;
+    esac
+}
+
+systemd_preun() {
+    systemd_update_helper remove-system-units "$@"
+}
+
+systemd_triggers() {
+    systemd_update_helper system-reload-restart
+}
+
 if [ $1 -eq 0 ] ; then
     # Package removal, not upgrade
-    if [ -d /run/systemd/system ]; then
-        systemctl --no-reload disable --now "mytest.timer"
-    else
-        systemctl --no-reload disable "mytest.timer"
-    fi
+    # Run commands equivalent what the RPM systemd macros would do
+    systemd_preun mytest.timer
+    systemd_triggers
 fi
 '''
 
@@ -55,13 +137,55 @@ post_uninstall_script = '''
 # Script based on the RPM %systemd_postun scriptlet. See:
 #   - https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/#_systemd
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/macros.systemd.in
+#   - https://github.com/systemd/systemd/blob/main/src/rpm/triggers.systemd.in
 #   - https://github.com/systemd/systemd/blob/main/src/rpm/systemd-update-helper.in
-if [ $1 -ge 1 ] ; then
-    [ -d /run/systemd/system ] || exit 0
+systemd_update_helper() {
+    command="${1:?}"
+    shift
+    
+    command -v systemctl >/dev/null || exit 0
 
-    for unit in "$@"; do
-        systemctl set-property "$unit" Markers=+needs-restart &
-    done
-    wait
+    case "$command" in
+        mark-restart-system-units)
+            [ -d /run/systemd/system ] || exit 0
+    
+            for unit in "$@"; do
+                systemctl set-property "$unit" Markers=+needs-restart &
+            done
+            wait
+            ;;
+
+        system-reload-restart|system-reload|system-restart)
+            if [ -n "$*" ]; then
+                echo "Unexpected arguments for '$command': $*"
+                exit 2
+            fi
+    
+            [ -d /run/systemd/system ] || exit 0
+    
+            if [[ "$command" =~ reload ]]; then
+                systemctl daemon-reload
+            fi
+    
+            if [[ "$command" =~ restart ]]; then
+                systemctl reload-or-restart --marked
+            fi
+            ;;
+    esac
+}
+
+systemd_postun_with_restart() {
+    systemd_update_helper mark-restart-system-units "$@"
+}
+
+systemd_triggers() {
+    systemd_update_helper system-reload
+    systemd_update_helper system-restart
+}
+
+if [ $1 -ge 1 ] ; then
+    # Run commands equivalent what the RPM systemd macros would do
+    systemd_postun_with_restart mytest.timer
+    systemd_triggers
 fi
 '''
