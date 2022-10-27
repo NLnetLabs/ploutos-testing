@@ -29,7 +29,8 @@ if [ $1 -eq 1 ] ; then
     # Ensure that the home directory has the correct permissions
     chmod ${R_HOME_DIR_PERMS} ${R_HOME_DIR}
     
-    systemctl preset mytest.timer 2>&1 || :
+    systemctl enable mytest.timer 2>&1 || :
+    systemctl start mytest.timer 2>&1 || :
 fi
 '''
 
