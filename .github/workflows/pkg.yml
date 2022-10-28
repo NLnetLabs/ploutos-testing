@@ -14,10 +14,10 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      cross_build_rules_path: pkg/rules/cross-targets.yml
-      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
-      package_build_rules_path: pkg/rules/packages-to-build.yml
-      package_test_rules_path: pkg/rules/packages-to-test.yml
+      cross_build_rules_path: pkg/rules/cross-build-rules.yml
+      docker_build_rules_path: pkg/rules/docker-build-rules.yml
+      package_build_rules_path: pkg/rules/package-build-rules.yml
+      package_test_rules_path: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       cross_build_args: --no-default-features
@@ -35,10 +35,10 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      cross_build_rules_path: pkg/rules/cross-targets.yml
-      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
-      package_build_rules_path: pkg/rules/packages-to-build.yml
-      package_test_rules_path: pkg/rules/packages-to-test.yml
+      cross_build_rules_path: pkg/rules/cross-build-rules.yml
+      docker_build_rules_path: pkg/rules/docker-build-rules.yml
+      package_build_rules_path: pkg/rules/package-build-rules.yml
+      package_test_rules_path: pkg/rules/package-test-rules.yml
 
       cross_build_args: --no-default-features
       deb_extra_build_packages: libssl-dev
@@ -52,9 +52,9 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      cross_build_rules_path: pkg/rules/cross-targets.yml
-      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
-      package_build_rules_path: pkg/rules/packages-to-build.yml
+      cross_build_rules_path: pkg/rules/cross-build-rules.yml
+      docker_build_rules_path: pkg/rules/docker-build-rules.yml
+      package_build_rules_path: pkg/rules/package-build-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       cross_build_args: --no-default-features
@@ -65,9 +65,9 @@ jobs:
   no_docker:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.0.9
     with:
-      cross_build_rules_path: pkg/rules/cross-targets.yml
-      package_build_rules_path: pkg/rules/packages-to-build.yml
-      package_test_rules_path: pkg/rules/packages-to-test.yml
+      cross_build_rules_path: pkg/rules/cross-build-rules.yml
+      package_build_rules_path: pkg/rules/package-build-rules.yml
+      package_test_rules_path: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       cross_build_args: --no-default-features
@@ -82,8 +82,8 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      cross_build_rules_path: pkg/rules/cross-targets.yml
-      docker_build_rules_path: pkg/rules/docker-images-to-build.yml
+      cross_build_rules_path: pkg/rules/cross-build-rules.yml
+      docker_build_rules_path: pkg/rules/docker-build-rules.yml
 
       cross_build_args: --no-default-features
 
@@ -94,9 +94,9 @@ jobs:
       docker_org: ximoneighteen
       docker_repo: ximontest
 
-      docker_build_rules_path: pkg/rules/docker-images-to-build-no-cross.yml
-      package_build_rules_path: pkg/rules/packages-to-build-no-cross.yml
-      package_test_rules_path: pkg/rules/packages-to-test-no-cross.yml
+      docker_build_rules_path: pkg/rules/docker-build-rules-no-cross.yml
+      package_build_rules_path: pkg/rules/package-build-rules-no-cross.yml
+      package_test_rules_path: pkg/rules/package-test-rules-no-cross.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
