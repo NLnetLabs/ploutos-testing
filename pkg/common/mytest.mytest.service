@@ -1,0 +1,6 @@
+[Unit]
+Description=My Test
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mytest
