@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Check Docker publish output
         if: ${{ needs.full.outputs.docker_published }}
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           script: |
             core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
