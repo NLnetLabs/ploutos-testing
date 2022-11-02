@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -37,10 +37,10 @@ jobs:
             core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
 
   minimal:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
 
   no_test_scripts:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -57,7 +57,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_tests:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -74,7 +74,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     with:
       cross_build_rules_path: pkg/rules/cross-build-rules.yml
       package_build_rules_path: pkg/rules/package-build-rules.yml
@@ -87,7 +87,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   only_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     secrets: inherit
     with:
       docker_org: ximoneighteen
@@ -110,7 +110,7 @@ jobs:
             core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
 
   no_cross:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v1.1.0
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v2
     secrets: inherit
     with:
       docker_org: ximoneighteen
