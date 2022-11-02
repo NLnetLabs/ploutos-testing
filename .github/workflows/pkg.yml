@@ -25,12 +25,12 @@ jobs:
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
-  check-full:
+  check_full:
     runs-on: ubuntu-latest
     needs: full
     steps:
       - name: Check Docker publish output
-        if: ${{ needs.full.outputs.docker_published }}
+        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.full.outputs.docker_published }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -97,6 +97,17 @@ jobs:
       docker_build_rules_path: pkg/rules/docker-build-rules.yml
 
       cross_build_args: --no-default-features
+
+  check_only_docker:
+    runs-on: ubuntu-latest
+    needs: only_docker
+    steps:
+      - name: Check Docker publish output
+        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.only_docker.outputs.docker_published }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
 
   no_cross:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@add-docker-publishing-output
