@@ -7,5 +7,6 @@
 #   output:      Creates a GitHub Actions artifact named 'tmp-cross-binaries-<target>' which will contain the
 #                cross-compiled binary/binaries (any executable files that were written to target/<target>/release/*).
 
+target:
 - 'arm-unknown-linux-musleabihf'    # for Docker
 - 'arm-unknown-linux-gnueabihf'     # for DEB
