@@ -11,8 +11,8 @@ case $1 in
     journalctl --unit mytest.service | grep -F 'Hello, world!'
 
     # check that our package has the expected dependencies
-    ID=$(grep -E '^ID=' /etc/os-release | cut -d '=' -f 2)
-    CODENAME=$(grep -E '^VERSION_CODENAME=' /etc/os-release | cut -d '=' -f 2)
+    ID=$(grep -E '^ID=' /etc/os-release | cut -d '=' -f 2 || true)
+    CODENAME=$(grep -E '^VERSION_CODENAME=' /etc/os-release | cut -d '=' -f 2 || true)
 
     case $ID in
       ubuntu|debian)
