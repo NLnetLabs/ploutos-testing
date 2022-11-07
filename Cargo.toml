@@ -38,7 +38,7 @@ depends = "adduser, passwd, libc6 (>= 2.28), libssl1.1"
 
 
 [package.metadata.deb.variants.minimal]
-depends = "libc, rsync" # a deliberately different dependency that we can test for on older O/S's.
+depends = "libc6 (>= 2.28), rsync" # a deliberately different dependency that we can test for on older O/S's.
 
 
 [package.metadata.generate-rpm]
