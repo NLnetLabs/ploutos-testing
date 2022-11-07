@@ -51,6 +51,12 @@ image:
 target:
   - "x86_64"
 include:
+  # package for testing minimal-cross variant selection
+  # needs to be both 'cross' and 'minimal' (i.e. an "old" O/S)
+  - pkg: "mytest"
+    image: "ubuntu:bionic"
+    target: "arm-unknown-linux-gnueabihf"
+
   # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
   # Raspbian 10 is based.
   - pkg: "mytest"
