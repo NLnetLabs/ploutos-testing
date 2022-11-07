@@ -37,6 +37,10 @@ depends = "$auto, passwd, libssl3"
 depends = "adduser, passwd, libc6 (>= 2.28), libssl1.1"
 
 
+[package.metadata.deb.variants.minimal]
+depends = "rsync" # a deliberately different dependency that we can test for on older O/S's.
+
+
 [package.metadata.generate-rpm]
 # "BSD" is the 3-clause license. Inheriting "license" from above causes rpmlint to complain with "invalid-license".
 # See: https://fedoraproject.org/wiki/Licensing:Main?rd=Licensing
