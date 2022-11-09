@@ -11,11 +11,13 @@ jobs:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.2
     secrets: inherit
     with:
+      cross_build_rules: pkg/rules/cross-build-rules.yml
+      cross_build_args: --no-default-features
+
       docker_org: ximoneighteen
       docker_repo: ximontest
-
-      cross_build_rules: pkg/rules/cross-build-rules.yml
       docker_build_rules: pkg/rules/docker-build-rules.yml
+
       package_build_rules: |
         pkg:
           - "mytest"
@@ -52,12 +54,13 @@ jobs:
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             os: 'centos:8'
+
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
-      cross_build_args: --no-default-features
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   check_full:
@@ -78,60 +81,61 @@ jobs:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.2
     secrets: inherit
     with:
+      cross_build_args: --no-default-features
+
       docker_org: ximoneighteen
       docker_repo: ximontest
-
-      cross_build_rules: pkg/rules/cross-build-rules.yml
       docker_build_rules: pkg/rules/docker-build-rules.yml
+
       package_build_rules: pkg/rules/package-build-rules.yml
       package_test_rules: pkg/rules/package-test-rules.yml
 
-      cross_build_args: --no-default-features
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_tests:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.2
     secrets: inherit
     with:
+      cross_build_args: --no-default-features
+
       docker_org: ximoneighteen
       docker_repo: ximontest
-
-      cross_build_rules: pkg/rules/cross-build-rules.yml
       docker_build_rules: pkg/rules/docker-build-rules.yml
+
       package_build_rules: pkg/rules/package-build-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
-      cross_build_args: --no-default-features
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_docker:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.2
     with:
-      cross_build_rules: pkg/rules/cross-build-rules.yml
+      cross_build_args: --no-default-features
+
       package_build_rules: pkg/rules/package-build-rules.yml
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
-      cross_build_args: --no-default-features
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   only_docker:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.2
     secrets: inherit
     with:
+      cross_build_args: --no-default-features
+
       docker_org: ximoneighteen
       docker_repo: ximontest
-
-      cross_build_rules: pkg/rules/cross-build-rules.yml
       docker_build_rules: pkg/rules/docker-build-rules.yml
-
-      cross_build_args: --no-default-features
 
   check_only_docker:
     runs-on: ubuntu-latest
@@ -150,12 +154,13 @@ jobs:
     with:
       docker_org: ximoneighteen
       docker_repo: ximontest
-
       docker_build_rules: pkg/rules/docker-build-rules-no-cross.yml
+
       package_build_rules: pkg/rules/package-build-rules-no-cross.yml
       package_test_rules: pkg/rules/package-test-rules-no-cross.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
+
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
