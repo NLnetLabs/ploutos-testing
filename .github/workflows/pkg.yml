@@ -77,10 +77,10 @@ jobs:
             core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
 
   minimal:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
 
   no_test_scripts:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -100,7 +100,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_tests:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -120,7 +120,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   no_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     with:
       cross_build_args: --no-default-features
 
@@ -136,7 +136,7 @@ jobs:
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   only_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -146,7 +146,7 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
   docker_no_secrets:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     with:
       docker_org: ximoneighteen
       docker_repo: ximontest
@@ -167,7 +167,7 @@ jobs:
             core.setFailed("Expected Docker publishing to be done but output `docker_published` is false")
 
   no_cross:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
     secrets: inherit
     with:
       docker_org: ximoneighteen
