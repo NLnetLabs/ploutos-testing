@@ -61,7 +61,7 @@ jobs:
       deb_extra_build_packages: libssl-dev
       deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       deb_apt_key_url: 'https://packagecloud.io/ximon18/ploutos-testing/gpgkey'
-      deb_apt_source: 'deb [signed-by=/etc/apt/keyrings/ximon18_ploutos-testing-archive-keyring.gpg] https://packagecloud.io/ximon18/ploutos-testing/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_source: 'deb https://packagecloud.io/ximon18/ploutos-testing/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
