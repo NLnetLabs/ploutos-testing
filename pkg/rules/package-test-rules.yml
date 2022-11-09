@@ -33,3 +33,8 @@ mode:
   - "fresh-install"
 target:
   - "x86_64"
+include:
+  - pkg: "mytest"
+    image: "ubuntu:jammy"
+    mode: "upgrade-from-published"
+    target: "x86_64"
