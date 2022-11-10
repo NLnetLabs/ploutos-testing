@@ -234,7 +234,7 @@ jobs:
     strategy:
       matrix:
         needs: [full, only-docker, no-cross]
-    needs: ${{ matrix.needs }}
+    needs: [full, only-docker, no-cross]
     steps:
       - name: Check Docker image publication
         if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.${{ matrix.needs }}.outputs.docker_images_published }}
