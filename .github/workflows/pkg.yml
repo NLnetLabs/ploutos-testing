@@ -64,6 +64,12 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/pgp-key.public'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        enabled=1
 
   check_full:
     runs-on: ubuntu-latest
@@ -105,6 +111,12 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/pgp-key.public'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        enabled=1
 
   no_tests:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
@@ -125,6 +137,12 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/pgp-key.public'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        enabled=1
 
   no_docker:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
@@ -141,6 +159,12 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/pgp-key.public'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        enabled=1
 
   only_docker:
     uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
@@ -198,3 +222,9 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/pgp-key.public'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        enabled=1

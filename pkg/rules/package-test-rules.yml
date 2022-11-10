@@ -38,3 +38,7 @@ include:
     image: "ubuntu:jammy"
     mode: "upgrade-from-published"
     target: "x86_64"
+  - pkg: "mytest"
+    image: "centos:8"
+    mode: "upgrade-from-published"
+    target: "x86_64"
