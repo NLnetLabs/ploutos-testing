@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     secrets: inherit
     with:
       cross_build_rules: pkg/rules/cross-build-rules.yml
@@ -90,10 +90,10 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   minimal:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
 
   no_test_scripts:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -119,7 +119,7 @@ jobs:
         enabled=1
 
   no_tests:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -145,7 +145,7 @@ jobs:
         enabled=1
 
   no_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     with:
       cross_build_args: --no-default-features
 
@@ -167,7 +167,7 @@ jobs:
         enabled=1
 
   only_docker:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     secrets: inherit
     with:
       cross_build_args: --no-default-features
@@ -177,7 +177,7 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
   docker_no_secrets:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     with:
       docker_org: ximoneighteen
       docker_repo: ximontest
@@ -205,7 +205,7 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   no_cross:
-    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@18-make-source-for-upgrade-from-published-configurable
+    uses: NLnetLabs/.github/.github/workflows/pkg-rust.yml@v3.0.3
     secrets: inherit
     with:
       docker_org: ximoneighteen
