@@ -229,7 +229,7 @@ jobs:
         baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
-  check_only_docker:
+  check_no_cross:
     runs-on: ubuntu-latest
     needs: no_cross
     steps:
