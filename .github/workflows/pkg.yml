@@ -68,7 +68,7 @@ jobs:
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   check_full:
@@ -115,7 +115,7 @@ jobs:
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   no_tests:
@@ -141,7 +141,7 @@ jobs:
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   no_docker:
@@ -163,7 +163,7 @@ jobs:
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   only_docker:
@@ -226,5 +226,5 @@ jobs:
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
