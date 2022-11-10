@@ -229,22 +229,19 @@ jobs:
         baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/repo-test/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
-  check:
+  check_only_docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        needs: [full, only-docker, no-cross]
-    needs: [full, only-docker, no-cross]
+    needs: no_cross
     steps:
       - name: Check Docker image publication
-        if: (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.(matrix.needs).outputs.docker_images_published
+        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.no_cross.outputs.docker_images_published }}
         uses: actions/github-script@v6
         with:
           script: |
             core.setFailed("Expected Docker images to have been published but output `docker_images_published` is false")
 
       - name: Check Docker manifest publication
-        if: ${{ contains(github.ref, 'refs/tags/v') && !needs.(matrix.needs).outputs.docker_manifest_published }}
+        if: ${{ contains(github.ref, 'refs/tags/v') && !needs.no_cross.outputs.docker_manifest_published }}
         uses: actions/github-script@v6
         with:
           script: |
