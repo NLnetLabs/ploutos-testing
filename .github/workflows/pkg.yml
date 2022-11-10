@@ -83,7 +83,7 @@ jobs:
             core.setFailed("Expected Docker images to have been published but output `docker_images_published` is false")
 
       - name: Check Docker manifest publication
-        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') !needs.full.outputs.docker_manifest_published }}
+        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.full.outputs.docker_manifest_published }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -198,7 +198,7 @@ jobs:
             core.setFailed("Expected Docker images to have been published but output `docker_images_published` is false")
 
       - name: Check Docker manifest publication
-        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') !needs.only_docker.outputs.docker_manifest_published }}
+        if: ${{ (contains(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main') && !needs.only_docker.outputs.docker_manifest_published }}
         uses: actions/github-script@v6
         with:
           script: |
