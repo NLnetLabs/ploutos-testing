@@ -1,0 +1,24 @@
+Origin: Example Repository
+Label: Example
+Suite: jammy
+Codename: jammy
+Version: 1.0
+Architectures: amd64 arm64 arm7
+Components: main
+Description: An example software repository
+Date: Wed, 09 Nov 2022 22:50:47 +0000
+MD5Sum:
+ 842dfbb048e1f6494aa3450e476fa67b 601 main/binary-amd64/Packages
+ 9ae8a35f7dc62703f06f54af18b90088 444 main/binary-amd64/Packages.gz
+ 4d0610da29766998509382f5f0fd572d 862 Release.gpg
+ 82a581fdf58f284c85dfda25e4dcee3b 1629 InRelease
+SHA1:
+ 0db321bbfb5933d2b903314fbb3d289345030761 601 main/binary-amd64/Packages
+ 23d1fc4ab775be8a93c113c00eb7df6bc421cb73 444 main/binary-amd64/Packages.gz
+ 451301e9c9cf698dcc85790af4408d35c7f4193e 862 Release.gpg
+ 7bfecef5af468e54839cdd4ae1b15f164d34ff1f 1629 InRelease
+SHA256:
+ 2bd7041316cfe829513b4db28e22fdd8dd016b6c8310d7a7a029edbad1943cf2 601 main/binary-amd64/Packages
+ 7c41388b7fd204591863b4db0b178c57c042cbb13945fc5ebb6a7dc82882adec 444 main/binary-amd64/Packages.gz
+ 67223358ac6b1ad470b07127bf0e240859b89f0d9b6ab4e151d49688363568d5 862 Release.gpg
+ fdf566606a07e050d5f44da28bfedde0988ba15777675621c59e2053d441777f 1629 InRelease

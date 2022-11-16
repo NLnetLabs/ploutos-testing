@@ -1,0 +1,17 @@
+Package: mytest
+Version: 0.1.0-1jammy
+Architecture: amd64
+Maintainer: This Needs To Be A Name <and_an@email.address>
+Installed-Size: 325
+Depends: passwd, libssl3, libc6 (>= 2.34)
+Filename: pool/main/mytest_0.1.0-1jammy_amd64.deb
+Size: 126352
+MD5sum: 932703925171266748768d542f129aca
+SHA1: a9f73177fd2b728fa38d363a291d57dd9a40e95c
+SHA256: ca4699e2d13421b98bfdc01a1437bea536fa60e846d42c32946a2aff6172c880
+Section: net
+Priority: optional
+Description: So apparently this needs to be longer or Lintian gets unhappy.
+ And this should be something different than the description field value in
+ Cargo.toml.
+
