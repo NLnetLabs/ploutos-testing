@@ -3,7 +3,7 @@ name = "mytest"
 description = "So apparently this needs to be longer or Lintian gets unhappy."
 version = "0.1.1"
 edition = "2021"
-authors = ["This Needs To Be A Name <and_an@email.address>"]
+authors = ["Some Body <some.body@example.com>"]
 
 # Per https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields
 # this must be one of the short IDs at https://github.com/spdx/license-list-data/blob/v3.11/licenses.md
