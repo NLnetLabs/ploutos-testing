@@ -22,6 +22,11 @@ case $1 in
             apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Maintainer <minimal@example.com>'
             ;;
 
+          buster)
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Some Author <some.author@example.com>'
+            ;;
+
           jammy)
             apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
             apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>'
