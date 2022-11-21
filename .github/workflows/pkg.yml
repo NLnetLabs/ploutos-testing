@@ -59,7 +59,6 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
@@ -106,7 +105,6 @@ jobs:
       package_test_rules: pkg/rules/package-test-rules.yml
 
       deb_extra_build_packages: libssl-dev
-      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
@@ -132,7 +130,6 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
@@ -154,7 +151,6 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_maintainer: The NLnet Labs RPKI Team <rpki@nlnetlabs.nl>
       deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
