@@ -19,15 +19,7 @@ case $1 in
         case $CODENAME in
           xenial|bionic|stretch)
             apt show mytest 2>&1 | grep -E '^Depends' | grep 'rsync'
-            case $HOST in
-              x86_64)
-                apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Maintainer <minimal@example.com>'
-                ;;
-
-              *)
-                apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Cross Maintainer <minimal.cross@example.com>'
-                ;;
-            esac
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Maintainer <minimal@example.com>'
             ;;
 
           jammy)
