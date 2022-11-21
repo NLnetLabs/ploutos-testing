@@ -11,7 +11,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ context.job.name }}
+      artifact_prefix: ${{ github.job.name }}
 
       cross_build_rules: pkg/rules/cross-build-rules.yml
       cross_build_args: --no-default-features
