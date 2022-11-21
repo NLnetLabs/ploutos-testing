@@ -11,7 +11,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: full_
 
       cross_build_rules: pkg/rules/cross-build-rules.yml
       cross_build_args: --no-default-features
@@ -97,7 +97,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: no_test_scripts_
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -123,7 +123,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: no_tests_
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -148,7 +148,7 @@ jobs:
   no_docker:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: no_docker_
       cross_build_args: --no-default-features
 
       package_build_rules: pkg/rules/package-build-rules.yml
@@ -171,7 +171,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: only_docker_
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -181,7 +181,7 @@ jobs:
   docker_no_secrets:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: docker_no_secrets_
       docker_org: ximoneighteen
       docker_repo: ximontest
       docker_build_rules: |
@@ -211,7 +211,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@support-artifact-prefixing
     secrets: inherit
     with:
-      artifact_prefix: ${{ github.job.id }}_
+      artifact_prefix: no_cross_
       docker_org: ximoneighteen
       docker_repo: ximontest
       docker_build_rules: pkg/rules/docker-build-rules-no-cross.yml
