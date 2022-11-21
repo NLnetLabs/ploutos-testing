@@ -18,25 +18,25 @@ case $1 in
       ubuntu|debian)
         case $CODENAME in
           xenial|bionic|stretch)
-            dpkg-deb -f mytest Depends | grep 'rsync'
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'rsync'
             case $HOST in
               x86_64)
-                dpkg-deb -f mytest Maintainer | grep 'Minimal Maintainer <minimal@example.com>'
+                apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Maintainer <minimal@example.com>'
                 ;;
 
               *)
-                dpkg-deb -f mytest Maintainer | grep 'Minimal Cross Maintainer <minimal.cross@example.com>'
+                apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Cross Maintainer <minimal.cross@example.com>'
                 ;;
             esac
             ;;
 
           jammy)
-            dpkg-deb -f mytest Depends | grep 'libssl'
-            dpkg-deb -f mytest Maintainer | grep 'Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>'
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>'
             ;;
 
           *)
-            dpkg-deb -f mytest Depends | grep 'libssl'
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
             ;;
         esac
         ;;
