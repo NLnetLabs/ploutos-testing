@@ -19,6 +19,17 @@ case $1 in
         case $CODENAME in
           xenial|bionic|stretch)
             apt show mytest 2>&1 | grep -E '^Depends' | grep 'rsync'
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Minimal Maintainer <minimal@example.com>'
+            ;;
+
+          buster)
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Some Author <some.author@example.com>'
+            ;;
+
+          jammy)
+            apt show mytest 2>&1 | grep -E '^Depends' | grep 'libssl'
+            apt show mytest 2>&1 | grep -E '^Maintainer' | grep 'Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>'
             ;;
 
           *)

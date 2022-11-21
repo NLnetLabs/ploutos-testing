@@ -27,6 +27,7 @@ image:
   - "ubuntu:bionic"
   - "ubuntu:jammy" # ubuntu/22.04
   - "debian:stretch" # should get excluded because the LXC image no longer exists
+  - "debian:buster"
   - "centos:7"
   - "centos:8"
 mode:
