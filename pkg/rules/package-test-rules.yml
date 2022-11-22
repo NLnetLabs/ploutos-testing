@@ -39,7 +39,6 @@ include:
     image: "ubuntu:jammy"
     mode: "upgrade-from-published"
     target: "x86_64"
-    deb_extra_lintian_args: '--suppress-tags no-manual-page'
   - pkg: "mytest"
     image: "centos:8"
     mode: "upgrade-from-published"
