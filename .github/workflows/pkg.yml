@@ -60,16 +60,16 @@ jobs:
             target: "x86_64"
             os: "centos:8"
 
-          - pkg: "mytest"
-            image: "debian:buster"
+          - image: "debian:stretch"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
-          - pkg: "mytest"
-            image: "ubuntu:bionic"
+          - image: "debian:buster"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
-          - pkg: "mytest"
-            image: "ubuntu:jammy"
+          - image: "ubuntu:bionic"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+
+          - image: "ubuntu:jammy"
             deb_extra_lintian_args: "--suppress-tags no-manual-page"
 
       package_test_rules: pkg/rules/package-test-rules.yml
