@@ -8,10 +8,11 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5.0.1
     secrets: inherit
     with:
       artifact_prefix: full_
+      strict_mode: true
 
       cross_build_rules: pkg/rules/cross-build-rules.yml
       cross_build_args: --no-default-features
@@ -26,10 +27,10 @@ jobs:
         image:
           - "ubuntu:bionic"
           - "ubuntu:jammy" # ubuntu/22.04
-          - "debian:buster"
           - "debian:stretch"
-          - 'centos:7'
-          - 'rockylinux:8'     # compatible with EOL centos:8
+          - "debian:buster"
+          - "centos:7"
+          - "rockylinux:8"     # compatible with EOL centos:8
         target:
           - "x86_64"
         include:
@@ -38,6 +39,7 @@ jobs:
           - pkg: "mytest"
             image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - pkg: "mytest"
             image: "centos:7"
@@ -54,20 +56,32 @@ jobs:
           # therefore in this case need to specify that the O/S we are building for has a different name than the Docker
           # image we are building it in.
           - pkg: "mytest"
-            image: 'rockylinux:8'
+            image: "rockylinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
-            os: 'centos:8'
+            os: "centos:8"
+
+          - image: "ubuntu:bionic"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+
+          - image: "ubuntu:jammy"
+            deb_extra_lintian_args: "--suppress-tags no-manual-page"
+
+          - image: "debian:stretch"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+
+          - image: "debian:buster"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc"
+      deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc"
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
