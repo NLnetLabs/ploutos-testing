@@ -27,8 +27,8 @@ jobs:
         image:
           - "ubuntu:bionic"
           - "ubuntu:jammy" # ubuntu/22.04
-          - "debian:buster"
           - "debian:stretch"
+          - "debian:buster"
           - "centos:7"
           - "rockylinux:8"     # compatible with EOL centos:8
         target:
@@ -39,6 +39,7 @@ jobs:
           - pkg: "mytest"
             image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - pkg: "mytest"
             image: "centos:7"
@@ -60,21 +61,17 @@ jobs:
             target: "x86_64"
             os: "centos:8"
 
-          - pkg: "mytest"
-            image: "debian:stretch"
+          - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
-          - pkg: "mytest"
-            image: "debian:buster"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
-
-          - pkg: "mytest"
-            image: "ubuntu:bionic"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
-
-          - pkg: "mytest"
-            image: "ubuntu:jammy"
+          - image: "ubuntu:jammy"
             deb_extra_lintian_args: "--suppress-tags no-manual-page"
+
+          - image: "debian:stretch"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+
+          - image: "debian:buster"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
