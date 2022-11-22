@@ -63,7 +63,6 @@ include:
   - pkg: "mytest"
     image: "debian:buster"
     target: "arm-unknown-linux-gnueabihf"
-    deb_extra_lintian_args: '--suppress-tags binary-without-manpage'
 
   - pkg: "mytest"
     image: "centos:7"
@@ -84,8 +83,3 @@ include:
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
     os: 'centos:8'
-
-  - pkg: "mytest"
-    image: 'ubuntu:jammy'
-    target: "x86_64"
-    deb_extra_lintian_args: '--suppress-tags no-manual-page'
