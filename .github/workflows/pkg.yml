@@ -39,7 +39,6 @@ jobs:
           - pkg: "mytest"
             image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - pkg: "mytest"
             image: "centos:7"
@@ -62,13 +61,15 @@ jobs:
             os: "centos:8"
 
           - pkg: "mytest"
+            image: "debian:buster"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+
+          - pkg: "mytest"
             image: "ubuntu:bionic"
-            target: "x86_64"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - pkg: "mytest"
             image: "ubuntu:jammy"
-            target: "x86_64"
             deb_extra_lintian_args: "--suppress-tags no-manual-page"
 
       package_test_rules: pkg/rules/package-test-rules.yml
