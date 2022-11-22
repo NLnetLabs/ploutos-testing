@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@strict-mode
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5.0.1
     secrets: inherit
     with:
       artifact_prefix: full_
