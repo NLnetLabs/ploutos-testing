@@ -1,4 +1,4 @@
-# .github-testing
+# Ploutos Test Suite
 
 ## Welcome
 
