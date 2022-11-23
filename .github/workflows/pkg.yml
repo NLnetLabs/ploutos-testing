@@ -54,7 +54,7 @@ jobs:
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             os: "centos:8"
-            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
+            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary no-binary"
 
           - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
@@ -186,7 +186,8 @@ jobs:
             target: "x86_64"
 
           - pkg: "mytest"
-            image: "centos:8"
+            image: "rockylinux:8"
+            os: "centos:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
