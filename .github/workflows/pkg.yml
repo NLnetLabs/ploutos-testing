@@ -159,6 +159,52 @@ jobs:
         baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
+  default_tests_with_upgrades:
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    secrets: inherit
+    with:
+      artifact_prefix: default_tests_
+      cross_build_args: --no-default-features
+
+      docker_org: ximoneighteen
+      docker_repo: ximontest
+      docker_build_rules: pkg/rules/docker-build-rules.yml
+
+      package_build_rules: |
+        pkg:
+          - "mytest"
+        image:
+          - "ubuntu:bionic"
+          - "ubuntu:jammy"
+          - "debian:buster"
+          - "centos:7"
+          - "centos:8"
+        mode:
+          - "fresh-install"
+        target:
+          - "x86_64"
+        include:
+          - pkg: "mytest"
+            image: "ubuntu:jammy"
+            mode: "upgrade-from-published"
+            target: "x86_64"
+          - pkg: "mytest"
+            image: "centos:8"
+            mode: "upgrade-from-published"
+            target: "x86_64"
+
+      deb_extra_build_packages: libssl-dev
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+
+      rpm_scriptlets_path: pkg/rpm/scriptlets.toml
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_repo: |
+        [nlnetlabs]
+        name=NLnet Labs
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        enabled=1
+
   no_tests:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5.0.2
     secrets: inherit
