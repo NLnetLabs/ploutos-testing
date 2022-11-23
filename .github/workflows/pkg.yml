@@ -163,12 +163,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
     secrets: inherit
     with:
-      artifact_prefix: default_tests_
-      cross_build_args: --no-default-features
-
-      docker_org: ximoneighteen
-      docker_repo: ximontest
-      docker_build_rules: pkg/rules/docker-build-rules.yml
+      artifact_prefix: default_tests_with_upgrades_
 
       package_build_rules: |
         pkg:
