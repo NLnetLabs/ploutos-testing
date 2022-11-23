@@ -1,6 +1,6 @@
 [package]
 name = "mytest"
-description = "So apparently this needs to be longer or Lintian gets unhappy."
+description = "This needs to be a certain length or Lintian complains, and mustn't end in a dot or rpmlint complains"
 version = "0.1.1"
 edition = "2021"
 authors = ["Some Author <some.author@example.com>"]
@@ -8,10 +8,6 @@ authors = ["Some Author <some.author@example.com>"]
 # Per https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields
 # this must be one of the short IDs at https://github.com/spdx/license-list-data/blob/v3.11/licenses.md
 license = "BSD-3-Clause"
-
-
-[dependencies]
-
 
 [package.metadata.deb]
 name = "mytest"
