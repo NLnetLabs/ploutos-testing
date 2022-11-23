@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5.0.1
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -22,8 +22,7 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: |
-        pkg:
-          - "mytest"
+        pkg: [mytest]
         image:
           - "ubuntu:bionic"
           - "ubuntu:jammy" # ubuntu/22.04
@@ -71,7 +70,7 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - image: "debian:buster"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+            deb_extra_lintian_args: '--suppress-tags binary-without-manpage'
 
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
