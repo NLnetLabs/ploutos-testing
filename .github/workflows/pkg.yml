@@ -76,15 +76,15 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc"
-      deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
+      deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc"
+      deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc"
+      rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc"
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   check_full:
@@ -123,15 +123,15 @@ jobs:
       package_test_rules: pkg/rules/package-test-rules.yml
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   default_tests:
@@ -148,15 +148,15 @@ jobs:
       package_build_rules: pkg/rules/package-build-rules.yml
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   default_tests_with_upgrades:
@@ -197,15 +197,15 @@ jobs:
             mode: "upgrade-from-published"
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   no_tests:
@@ -223,15 +223,15 @@ jobs:
       package_test_rules: none
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   no_docker:
@@ -245,15 +245,15 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   only_docker:
@@ -312,15 +312,15 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/yum-key.asc'
+      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/.github-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   check_no_cross:
