@@ -183,6 +183,13 @@ jobs:
             image: "ubuntu:jammy"
             target: "x86_64"
             mode: "upgrade-from-published"
+
+          - pkg: "mytest"
+            image: "centos:7"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
+            mode: "upgrade-from-published"
+
           - pkg: "mytest"
             image: "centos:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
