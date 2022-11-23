@@ -1,6 +1,6 @@
 [package]
 name = "mytest"
-description = "This needs to be a certain length or Lintian complains, and mustn't end in a dot or rpmlint complains"
+description = "Long enough for Lintian, short enough and without period for rpmlint"
 version = "0.1.1"
 edition = "2021"
 authors = ["Some Author <some.author@example.com>"]
