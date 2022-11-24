@@ -13,7 +13,6 @@ include:
     image: "centos:7"
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
-    rpm_rpmlint_check_filters: "no-binary"
 
   # CentOS 8 became EOL and is in theory still usable as a build container as there is still a Docker image
   # available, and package installation can be done by switching the yum config in the container to use packages
@@ -29,4 +28,3 @@ include:
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
     os: 'centos:8'
-    rpm_rpmlint_check_filters: "no-binary"
