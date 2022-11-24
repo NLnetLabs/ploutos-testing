@@ -170,7 +170,7 @@ jobs:
           - "ubuntu:jammy"
           - "debian:buster"
           - "centos:7"
-          - "centos:8"
+          - "rockylinux:8"
         mode:
           - "fresh-install"
         target:
@@ -192,8 +192,8 @@ jobs:
             os: "centos:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
-            mode: "upgrade-from-published"
             rpm_rpmlint_check_filters: "no-binary"
+            mode: "upgrade-from-published"
 
       deb_extra_build_packages: libssl-dev
       deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
