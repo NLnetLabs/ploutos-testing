@@ -22,7 +22,6 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: |
-        pkg: mytest
         image:
           - "ubuntu:bionic"
           - "ubuntu:jammy" # ubuntu/22.04
@@ -34,13 +33,11 @@ jobs:
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
           # Raspbian 10 is based.
-          - pkg: "mytest"
-            image: "debian:buster"
+          - image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
-          - pkg: "mytest"
-            image: "centos:7"
+          - image: "centos:7"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
 
@@ -53,11 +50,11 @@ jobs:
           # the archive that we produce below which is in turn based by default on the container image used to build. We
           # therefore in this case need to specify that the O/S we are building for has a different name than the Docker
           # image we are building it in.
-          - pkg: "mytest"
-            image: "rockylinux:8"
+          - image: "rockylinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             os: "centos:8"
+            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
           - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
@@ -172,7 +169,7 @@ jobs:
           - "ubuntu:jammy"
           - "debian:buster"
           - "centos:7"
-          - "centos:8"
+          - "rockylinux:8"
         mode:
           - "fresh-install"
         target:
@@ -189,7 +186,15 @@ jobs:
             target: "x86_64"
 
           - pkg: "mytest"
-            image: "centos:8"
+            image: "rockylinux:8"
+            os: "centos:8"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
+            mode: "fresh-install"
+
+          - pkg: "mytest"
+            image: "rockylinux:8"
+            os: "centos:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
