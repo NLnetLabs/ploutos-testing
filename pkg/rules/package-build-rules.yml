@@ -83,3 +83,4 @@ include:
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
     os: 'centos:8'
+    rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary no-binary"
