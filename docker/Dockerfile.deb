@@ -1,8 +1,9 @@
 ARG DEB_COMPATIBLE_BASE_IMG
 FROM ${DEB_COMPATIBLE_BASE_IMG}
+ADD https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz ./cargo-binstall.tgz
+RUN tar xvf ./cargo-binstall.tgz
+RUN ./cargo-binstall cargo-deb --version 1.38.4 -y
+RUN ./cargo-binstall toml-cli --version 0.2.0 -y
 RUN apt update
 RUN apt-get install -y curl
 RUN apt-get install -y binutils gcc dpkg-dev jq lintian pkg-config
-ADD https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz
-RUN ./cargo-binstall cargo-deb --version 1.38.4 -y
-RUN ./cargo-binstall toml-cli --version 0.2.0 -y
