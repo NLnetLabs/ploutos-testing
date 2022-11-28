@@ -7,8 +7,38 @@ on:
 # TODO: Use a matrix here for the different permutations of settings to invoke the reusable workflow with?
 
 jobs:
+  build_custom_deb_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_ID }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          file: docker/Dockerfile.deb
+          context: docker/
+          build-args: DEB_COMPATIBLE_BASE_IMG=rust:1-bullseye
+          tags: ximon18/ploutos-testing:bullseye
+
+  with_custom_images:
+    needs: [build_custom_deb_image]
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
+    with:
+      artifact_prefix: with_custom_images_
+
+      package_build_rules: |
+        include:
+          - image: "ximon18/ploutos-testing:bullseye"
+            target: x86_64
+            os: "debian:bullseye"
+
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -102,10 +132,10 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   minimal:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
 
   no_test_scripts:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
@@ -131,7 +161,7 @@ jobs:
         enabled=1
 
   default_tests:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: default_tests_
@@ -156,7 +186,7 @@ jobs:
         enabled=1
 
   default_tests_with_upgrades:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
@@ -212,7 +242,7 @@ jobs:
         enabled=1
 
   no_tests:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: no_tests_
@@ -238,7 +268,7 @@ jobs:
         enabled=1
 
   no_docker:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -260,7 +290,7 @@ jobs:
         enabled=1
 
   only_docker:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: only_docker_
@@ -271,7 +301,7 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
   docker_no_secrets:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     with:
       artifact_prefix: docker_no_secrets_
 
@@ -301,7 +331,7 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   no_cross:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
     secrets: inherit
     with:
       artifact_prefix: no_cross_
