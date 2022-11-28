@@ -26,7 +26,7 @@ jobs:
           file: docker/Dockerfile.deb
           context: docker/
           build-args: DEB_COMPATIBLE_BASE_IMG=rust:1-bullseye
-          tags: ximon18/ploutos-testing:bullseye
+          tags: ximoneighteen/ploutos-testing:bullseye
 
   with_custom_images:
     needs: [build_custom_deb_image]
@@ -36,7 +36,7 @@ jobs:
 
       package_build_rules: |
         include:
-          - image: "ximon18/ploutos-testing:bullseye"
+          - image: "ximoneighteen/ploutos-testing:bullseye"
             target: x86_64
             os: "debian:bullseye"
 
