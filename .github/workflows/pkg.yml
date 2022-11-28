@@ -109,6 +109,8 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
+      unsafe_fast_mode: true
+
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -135,6 +137,8 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: default_tests_
+      unsafe_fast_mode: true
+
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -160,6 +164,7 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
+      unsafe_fast_mode: true
 
       package_build_rules: |
         pkg:
@@ -216,6 +221,8 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: no_tests_
+      unsafe_fast_mode: true
+
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -241,6 +248,8 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@faster-tool-install
     with:
       artifact_prefix: no_docker_
+      unsafe_fast_mode: true
+
       cross_build_args: --no-default-features
 
       package_build_rules: pkg/rules/package-build-rules.yml
@@ -264,6 +273,8 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: only_docker_
+      unsafe_fast_mode: true
+
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
@@ -274,6 +285,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@faster-tool-install
     with:
       artifact_prefix: docker_no_secrets_
+      unsafe_fast_mode: true
 
       docker_org: ximoneighteen
       docker_repo: ximontest
@@ -305,6 +317,7 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: no_cross_
+      unsafe_fast_mode: true
 
       docker_org: ximoneighteen
       docker_repo: ximontest
