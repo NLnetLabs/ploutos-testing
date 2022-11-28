@@ -1,0 +1,10 @@
+ARG RPM_COMPATIBLE_BASE_IMG
+FROM ${RPM_COMPATIBLE_BASE_IMG}
+ADD https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz ./cargo-binstall.tgz
+RUN tar xvf ./cargo-binstall.tgz
+RUN ./cargo-binstall cargo-deb --version 1.38.4 -y
+RUN ./cargo-binstall toml-cli --version 0.2.0 -y
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile minimal -y
+RUN echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+RUN yum install epel-release -y
+RUN yum install -y findutils gcc jq python-magic rpmlint

@@ -28,6 +28,27 @@ jobs:
           build-args: DEB_COMPATIBLE_BASE_IMG=rust:1-bullseye
           tags: ximoneighteen/ploutos-testing:bullseye
 
+  build_custom_rpm_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_ID }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          file: docker/Dockerfile.rpm
+          context: docker/
+          build-args: RPM_COMPATIBLE_BASE_IMG=centos:7
+          tags: ximoneighteen/ploutos-testing:centos7
+
   with_custom_images:
     needs: [build_custom_deb_image]
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
@@ -39,6 +60,9 @@ jobs:
           - image: "ximoneighteen/ploutos-testing:bullseye"
             target: x86_64
             os: "debian:bullseye"
+          - image: "ximoneighteen/ploutos-testing:centos7"
+            target: x86_64
+            os: "centos:7"
 
   full:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@managed-changelog-test
