@@ -3,5 +3,6 @@ FROM ${DEB_COMPATIBLE_BASE_IMG}
 RUN apt update
 RUN apt-get install -y curl
 RUN apt-get install -y binutils gcc dpkg-dev jq lintian pkg-config
-RUN cargo install cargo-deb --version 1.38.4
-RUN cargo install toml-cli --version 0.2.0
+ADD https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz
+RUN ./cargo-binstall cargo-deb --version 1.38.4 -y
+RUN ./cargo-binstall toml-cli --version 0.2.0 -y
