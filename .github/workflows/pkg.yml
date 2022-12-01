@@ -8,7 +8,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -102,10 +102,10 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   minimal:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
 
   no_test_scripts:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
@@ -131,7 +131,7 @@ jobs:
         enabled=1
 
   default_tests:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: default_tests_
@@ -156,7 +156,7 @@ jobs:
         enabled=1
 
   default_tests_with_upgrades:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
@@ -212,7 +212,7 @@ jobs:
         enabled=1
 
   no_tests:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: no_tests_
@@ -238,7 +238,7 @@ jobs:
         enabled=1
 
   no_docker:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -260,7 +260,7 @@ jobs:
         enabled=1
 
   only_docker:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: only_docker_
@@ -271,7 +271,7 @@ jobs:
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
   docker_no_secrets:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     with:
       artifact_prefix: docker_no_secrets_
 
@@ -301,7 +301,7 @@ jobs:
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
   no_cross:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@@job-summaries-test
     secrets: inherit
     with:
       artifact_prefix: no_cross_
