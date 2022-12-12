@@ -148,12 +148,6 @@ jobs:
       deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   default_tests_with_upgrades:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v5
