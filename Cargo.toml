@@ -59,6 +59,10 @@ assets = [
 #pre_uninstall_script = ...
 #post_uninstall_script = ...
 
+[package.metadata.generate-rpm-alt-base-altpkg]
+# This is for testing building of a second RPM package using different settings than the main package. In this case
+the main package will have RPM scriptlets injected into it, while this one should not (as the source tree does not
+contain a pkg/rpm/scriptlets-altpkg.toml file).
 
 # ensure that the useradd is present by requiring the package that provides it
 [package.metadata.generate-rpm.requires]
