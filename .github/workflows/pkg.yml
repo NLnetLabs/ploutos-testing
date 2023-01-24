@@ -359,5 +359,6 @@ jobs:
             image: "centos:7"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
+      package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
