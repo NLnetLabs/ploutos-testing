@@ -354,6 +354,10 @@ jobs:
           - "fresh-install"
         target:
           - "x86_64"
+        include:
+          - pkg: "mytest"
+            image: "centos:7"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
 
-      systemd_service_unit_file: "pkg/common/mytest.mytest.*"
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
