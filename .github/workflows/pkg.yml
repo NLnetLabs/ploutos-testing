@@ -349,7 +349,7 @@ jobs:
           - "mytest"
           - "myalt"
         image:
-          - "ubuntu:bionic"
+          - "centos:7"
         mode:
           - "fresh-install"
         target:
