@@ -355,4 +355,5 @@ jobs:
         target:
           - "x86_64"
 
+      systemd_service_unit_file: "pkg/common/mytest.mytest.*"
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
