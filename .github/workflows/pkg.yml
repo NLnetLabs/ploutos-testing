@@ -18,7 +18,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest_full
+      docker_repo: ploutos-testing_full
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: |
