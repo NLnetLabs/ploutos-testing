@@ -18,7 +18,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_full
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: |
@@ -112,7 +112,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_no_test_scripts
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: pkg/rules/package-build-rules.yml
@@ -138,7 +138,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_default_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: pkg/rules/package-build-rules.yml
@@ -213,7 +213,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_no_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
       package_build_rules: pkg/rules/package-build-rules.yml
@@ -261,7 +261,7 @@ jobs:
       cross_build_args: --no-default-features
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_only_docker
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
   docker_no_secrets:
@@ -270,7 +270,7 @@ jobs:
       artifact_prefix: docker_no_secrets_
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_docker_no_secrets
       docker_build_rules: |
         platform: ["linux/amd64"]
         shortname: ["amd64"]
@@ -301,7 +301,7 @@ jobs:
       artifact_prefix: no_cross_
 
       docker_org: ximoneighteen
-      docker_repo: ximontest
+      docker_repo: ploutos-testing_no_cross
       docker_build_rules: pkg/rules/docker-build-rules-no-cross.yml
 
       package_build_rules: pkg/rules/package-build-rules-no-cross.yml
