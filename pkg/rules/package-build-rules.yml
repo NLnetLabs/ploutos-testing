@@ -87,6 +87,5 @@ include:
 
   - pkg: "mytest"
     image: 'rockylinux:9'
-    os: 'centos:8'
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
