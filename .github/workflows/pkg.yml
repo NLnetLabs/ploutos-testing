@@ -2,7 +2,11 @@ name: Packaging
 
 on:
   push:
+
   workflow_dispatch:
+
+  schedule:
+    - cron: '0 0 * * *'
 
 # TODO: Use a matrix here for the different permutations of settings to invoke the reusable workflow with?
 
