@@ -198,6 +198,10 @@ jobs:
             target: "x86_64"
             mode: "upgrade-from-published"
 
+          - pkg: "mytest"
+            image: "rockylinux:8"
+            test_image: "almalinux:8"
+
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
