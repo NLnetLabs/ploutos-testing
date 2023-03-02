@@ -24,7 +24,6 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:jammy"
           - "debian:buster"
-          - "centos:7"
           - "rockylinux:8"
         mode:
           - "fresh-install"
