@@ -51,11 +51,13 @@ jobs:
             image: "rockylinux:8"
             target: "x86_64"
             test-image: "almalinux/8"
+            force-run-key-a: ""
 
           - pkg: "mytest"
             image: "rockylinux:8"
             target: "x86_64"
             test-image: "centos/9-Stream"
+            force-run-key-b: ""
 
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
