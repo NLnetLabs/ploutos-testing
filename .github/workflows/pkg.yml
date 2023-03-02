@@ -51,7 +51,7 @@ jobs:
 
           - pkg: "mytest"
             image: "rockylinux:8"
-            test_image: "almalinux:8"
+            test_image: "almalinux/8"
 
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
