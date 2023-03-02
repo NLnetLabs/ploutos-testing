@@ -53,10 +53,12 @@ jobs:
 
           - pkg: "mytest"
             image: "rockylinux:8"
+            target: "x86_64"
             test_image: "almalinux/8"
 
           - pkg: "mytest"
             image: "rockylinux:8"
+            target: "x86_64"
             test_image: "centos/9-Stream"
 
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
