@@ -29,8 +29,6 @@ jobs:
           - "fresh-install"
         target:
           - "x86_64"
-        test-image:
-          - ""
         include:
           - pkg: "mytest"
             image: "ubuntu:jammy"
