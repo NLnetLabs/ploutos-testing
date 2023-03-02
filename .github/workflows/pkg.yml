@@ -53,6 +53,10 @@ jobs:
             image: "rockylinux:8"
             test_image: "almalinux/8"
 
+          - pkg: "mytest"
+            image: "rockylinux:8"
+            test_image: "centos/9-Stream"
+
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
