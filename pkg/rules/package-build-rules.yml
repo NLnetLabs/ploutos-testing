@@ -49,6 +49,7 @@ image:
   - "debian:buster"
   - 'centos:7'
   - 'rockylinux:8'     # compatible with EOL centos:8
+  - 'rockylinux:9'
 target:
   - "x86_64"
 include:
@@ -81,5 +82,10 @@ include:
   - pkg: "mytest"
     image: 'rockylinux:8'
     os: 'centos:8'
+    systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+    target: "x86_64"
+
+  - pkg: "mytest"
+    image: 'rockylinux:9'
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
