@@ -379,13 +379,15 @@ jobs:
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_cargo_toml
-      manifest_path: virtual/Cargo.toml
+      manifest_dir: virtual
+      workspace_package: app
 
       package_build_rules: |
         pkg:
           - "app"
         image:
-          - "centos:7"
+          - "rockylinux:8"
+          - "ubuntu:jammy"
         mode:
           - "fresh-install"
         target:
