@@ -12,6 +12,9 @@ license = "BSD-3-Clause"
 [dependencies]
 addone = { path = "../addone" }
 
+[package.metadata.deb]
+extended-description-file = "pkg/debian/description.txt"
+
 [package.metadata.generate-rpm]
 name = "app"
 # "BSD" is the 3-clause license. Inheriting "license" from above causes rpmlint to complain with "invalid-license".
@@ -21,4 +24,3 @@ license = "BSD"
 assets = [
     { source = "target/release/app", dest = "/usr/bin/app", mode = "755" }
 ]
-
