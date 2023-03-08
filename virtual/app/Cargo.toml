@@ -1,0 +1,13 @@
+[package]
+name = "app"
+description = "Long enough for Lintian, short enough and without period for rpmlint"
+version = "0.1.0"
+edition = "2021"
+authors = ["Some Author <some.author@example.com>"]
+
+# Per https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields
+# this must be one of the short IDs at https://github.com/spdx/license-list-data/blob/v3.11/licenses.md
+license = "BSD-3-Clause"
+
+[dependencies]
+addone = { path = "../addone" }
