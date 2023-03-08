@@ -8,7 +8,7 @@ case $1 in
     sleep 5s # allow time for the timer to fire (fires every 2 seconds)
     systemctl status mytest.timer
     systemctl status mytest.service || true # returns exit code 3 if active but not currently running
-    journalctl --unit mytest.service | grep -F 'Hello, world!'
+    journalctl --unit mytest.service | grep -F 'Hello, world! 1+2 is 3'
 
     # check that our package has the expected dependencies
     ID=$(grep -E '^ID=' /etc/os-release | cut -d '=' -f 2 || true)
