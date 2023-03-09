@@ -67,7 +67,7 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags no-manual-page,changelog-not-compressed-with-max-compression"
 
           - image: "debian:stretch"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:buster"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
