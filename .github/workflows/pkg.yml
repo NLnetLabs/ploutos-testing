@@ -61,7 +61,7 @@ jobs:
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
           - image: "ubuntu:bionic"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "ubuntu:jammy"
             deb_extra_lintian_args: "--suppress-tags no-manual-page,changelog-not-compressed-with-max-compression"
