@@ -64,13 +64,13 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - image: "ubuntu:jammy"
-            deb_extra_lintian_args: "--suppress-tags no-manual-page"
+            deb_extra_lintian_args: "--suppress-tags no-manual-page,changelog-not-compressed-with-max-compression"
 
           - image: "debian:stretch"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
 
           - image: "debian:buster"
-            deb_extra_lintian_args: '--suppress-tags binary-without-manpage'
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
@@ -78,7 +78,6 @@ jobs:
       deb_extra_build_packages: libssl-dev
       deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc"
       deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
-      deb_extra_lintian_args: "--suppress-tags changelog-not-compressed-with-max-compression"
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
       rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc"
