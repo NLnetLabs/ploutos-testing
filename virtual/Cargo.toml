@@ -1,0 +1,6 @@
+# Define a workspace to ensure compatibility with workspaces:
+[workspace]
+members = [
+    "app",
+    "addone"
+]
