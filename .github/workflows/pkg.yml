@@ -39,7 +39,7 @@ jobs:
           # Raspbian 10 is based.
           - image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
-            deb_extra_lintian_args: "--suppress-tags binary-without-manpage"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "centos:7"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
