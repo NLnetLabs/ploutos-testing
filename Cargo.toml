@@ -10,6 +10,7 @@ description = "Long enough for Lintian, short enough and without period for rpml
 version = "0.1.1"
 edition = "2021"
 authors = ["Some Author <some.author@example.com>"]
+homepage = "https://github.com/NLnetLabs/ploutos-testing"
 
 # Per https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields
 # this must be one of the short IDs at https://github.com/spdx/license-list-data/blob/v3.11/licenses.md
