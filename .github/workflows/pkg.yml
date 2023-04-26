@@ -15,7 +15,7 @@ jobs:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@configurable-runs-on
     secrets: inherit
     with:
-      runs_on: self-hosted
+      runs_on: ploutos
       artifact_prefix: full_
       strict_mode: true
 
