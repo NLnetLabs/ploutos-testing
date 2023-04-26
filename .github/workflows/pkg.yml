@@ -16,6 +16,8 @@ jobs:
     secrets: inherit
     with:
       runs_on: ploutos
+      cross_runs_on: ploutos-cross
+
       artifact_prefix: full_
       strict_mode: true
 
