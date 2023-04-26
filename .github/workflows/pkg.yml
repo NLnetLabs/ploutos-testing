@@ -141,6 +141,7 @@ jobs:
         name=NLnet Labs
         baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
+
   default_tests:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@configurable-runs-on
     secrets: inherit
@@ -324,7 +325,7 @@ jobs:
           script: |
             core.setFailed("Expected Docker manifest to have been published but output `docker_manifest_published` is false")
 
-no_cross:
+  no_cross:
     uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@configurable-runs-on
     secrets: inherit
     with:
