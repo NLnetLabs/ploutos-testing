@@ -12,7 +12,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@a6317204195da24e99378ea1dd03e949e611325e
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -21,7 +21,7 @@ jobs:
       cross_build_rules: pkg/rules/cross-build-rules.yml
       cross_build_args: --no-default-features
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_full
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
@@ -31,6 +31,7 @@ jobs:
           - "ubuntu:jammy" # ubuntu/22.04
           - "debian:stretch"
           - "debian:buster"
+          - "debian:bookworm"
           - "centos:7"
           - "rockylinux:8"     # compatible with EOL centos:8
         target: x86_64
@@ -70,6 +71,9 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:buster"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
+
+          - image: "debian:bookworm"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
       package_test_rules: pkg/rules/package-test-rules.yml
@@ -115,7 +119,7 @@ jobs:
       artifact_prefix: no_test_scripts_
       cross_build_args: --no-default-features
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_no_test_scripts
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
@@ -141,7 +145,7 @@ jobs:
       artifact_prefix: default_tests_
       cross_build_args: --no-default-features
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_default_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
@@ -167,6 +171,7 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:jammy"
           - "debian:buster"
+          - "debian:bookworm"
           - "rockylinux:8"
         mode:
           - "fresh-install"
@@ -218,7 +223,7 @@ jobs:
       artifact_prefix: no_tests_
       cross_build_args: --no-default-features
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_no_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
@@ -238,7 +243,7 @@ jobs:
         enabled=1
 
   no_docker:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@a6317204195da24e99378ea1dd03e949e611325e
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -266,7 +271,7 @@ jobs:
       artifact_prefix: only_docker_
       cross_build_args: --no-default-features
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_only_docker
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
@@ -275,7 +280,7 @@ jobs:
     with:
       artifact_prefix: docker_no_secrets_
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_docker_no_secrets
       docker_build_rules: |
         platform: ["linux/amd64"]
@@ -305,7 +310,7 @@ jobs:
     with:
       artifact_prefix: no_cross_
 
-      docker_org: ximoneighteen
+      docker_org: maertsen
       docker_repo: ploutos-testing_no_cross
       docker_build_rules: pkg/rules/docker-build-rules-no-cross.yml
 
