@@ -41,6 +41,9 @@ maintainer = "Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>"
 [package.metadata.deb.variants.debian-buster-arm-unknown-linux-gnueabihf]
 depends = "adduser, passwd, libc6 (>= 2.27), libssl1.1"
 
+[package.metadata.deb.variants.debian-bookworm]
+depends = "$auto, passwd, libssl3"
+
 [package.metadata.deb.variants.minimal]
 depends = "libc6 (>= 2.27), rsync" # a deliberately different dependency that we can test for on older O/S's.
 maintainer = "Minimal Maintainer <minimal@example.com>"
