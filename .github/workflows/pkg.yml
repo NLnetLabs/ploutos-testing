@@ -12,7 +12,7 @@ on:
 
 jobs:
   full:
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@77-prepare-container-step-loops-forever-if-cloud-init-has-trouble
     secrets: inherit
     with:
       artifact_prefix: full_
