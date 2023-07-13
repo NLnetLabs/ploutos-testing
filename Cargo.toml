@@ -41,9 +41,6 @@ maintainer = "Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>"
 [package.metadata.deb.variants.debian-buster-arm-unknown-linux-gnueabihf]
 depends = "adduser, passwd, libc6 (>= 2.27), libssl1.1"
 
-[package.metadata.deb.variants.debian-bullseye]
-depends = "$auto, passwd, libssl3"
-
 [package.metadata.deb.variants.debian-bookworm]
 depends = "$auto, passwd, libssl3"
 
