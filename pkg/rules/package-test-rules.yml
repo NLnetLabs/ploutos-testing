@@ -28,8 +28,11 @@ image:
   - "ubuntu:jammy" # ubuntu/22.04
   - "debian:stretch" # should get excluded because the LXC image no longer exists
   - "debian:buster"
+  - "debian:bullseye"
+  - "debian:bookworm"
   - "centos:7"
   - "centos:8"
+  - "rockylinux:9"
 mode:
   - "fresh-install"
 target:
