@@ -34,6 +34,14 @@ assets = [
 ]
 systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true }
 
+# By adding the variants defined below we will also then need to provide variant specific systemd files.
+# In pkg/common/ you will see symbolic links used to ensure that the systemd unit files around. Note that
+# if they are missing there will be no failure from cargo-deb during packaging, the failure is only
+# detected during the pkg-test phase (and as that phase is disabled for Debian Stretch and Debian Buster
+# because the LXC images don't exist/don't work properly) the fact that buster specific variant below has
+# no corresponding sym link in pkg/common/ doesn't actually cause our workflow to fail... Maybe cargo-deb
+# should warn about expected but missing systemd files? Maybe cargo-deb should fallback to the non-variant
+# specific unit files?
 [package.metadata.deb.variants.ubuntu-jammy]
 depends = "$auto, passwd, libssl3"
 maintainer = "Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>"
