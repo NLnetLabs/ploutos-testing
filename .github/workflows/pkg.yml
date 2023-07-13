@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       single_job:
-        description: 'Runs only the specified job'
+        description: 'Run only the specified job'
         required: false
         type: string
         default: ''
@@ -69,6 +69,10 @@ jobs:
             target: "x86_64"
             os: "centos:8"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
+
+          - image: "rockylinux:9"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
 
           - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
