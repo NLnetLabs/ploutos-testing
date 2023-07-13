@@ -85,13 +85,13 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:buster"
-          deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:bullseye"
-          deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:bookworm"
-          deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
       package_test_rules: pkg/rules/package-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
