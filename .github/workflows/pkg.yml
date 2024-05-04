@@ -19,7 +19,7 @@ on:
 jobs:
   full:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'full' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: full_
