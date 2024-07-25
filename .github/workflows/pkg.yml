@@ -387,14 +387,14 @@ jobs:
           - "mytest"
           - "myalt"
         image:
-          - "centos:7"
+          - "rockylinux:9"
         mode:
           - "fresh-install"
         target:
           - "x86_64"
         include:
           - pkg: "mytest"
-            image: "centos:7"
+            image: "rockylinux:9"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
