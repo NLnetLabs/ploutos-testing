@@ -2,6 +2,11 @@ name: Packaging
 
 on:
   push:
+    # Don't run on dev branches because when testing changes we may want to
+    # run with the single_job argument set to speed up testing and avoid
+    # wasting resources, but the automatic run will just run all of the jobs.
+    branches:
+      - 'main'
 
   workflow_dispatch:
     inputs:
