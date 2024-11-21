@@ -7,6 +7,8 @@ on:
     # wasting resources, but the automatic run will just run all of the jobs.
     branches:
       - 'main'
+    tags:        
+      - '**'
 
   workflow_dispatch:
     inputs:
