@@ -26,6 +26,7 @@ pkg:
 image:
   - "ubuntu:bionic"
   - "ubuntu:jammy" # ubuntu/22.04
+  - "ubuntu:noble"
   - "debian:stretch" # should get excluded because the LXC image no longer exists
   - "debian:buster"
   - "debian:bullseye"
