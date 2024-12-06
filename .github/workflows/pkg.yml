@@ -26,7 +26,7 @@ on:
 jobs:
   full:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'full' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -140,11 +140,11 @@ jobs:
 
   minimal:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'minimal' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
 
   no_test_scripts:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_test_scripts' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
@@ -171,7 +171,7 @@ jobs:
 
   default_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: default_tests_
@@ -192,7 +192,7 @@ jobs:
 
   default_tests_with_upgrades:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests_with_upgrades' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
@@ -250,7 +250,7 @@ jobs:
 
   no_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: no_tests_
@@ -277,7 +277,7 @@ jobs:
 
   no_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -300,7 +300,7 @@ jobs:
 
   only_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'only_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: only_docker_
@@ -330,7 +330,7 @@ jobs:
 
   docker_no_secrets:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'docker_no_secrets' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     with:
       artifact_prefix: docker_no_secrets_
 
@@ -343,7 +343,7 @@ jobs:
           
   no_cross:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_cross' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: no_cross_
@@ -388,7 +388,7 @@ jobs:
   
   test_with_alt_pkg:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_pkg' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_pkg
@@ -414,7 +414,7 @@ jobs:
 
   test_with_alt_cargo_toml:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_cargo_toml' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@ximon18-patch-1
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_cargo_toml
