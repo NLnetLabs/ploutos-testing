@@ -41,7 +41,8 @@ jobs:
 
       package_build_rules: |
         image:
-          - "ubuntu:bionic"
+          - "ubuntu:xenial" # ubuntu/18.04
+          - "ubuntu:bionic" # ubuntu/20.04
           - "ubuntu:jammy" # ubuntu/22.04
           - "ubuntu:noble" # ubuntu/24.04
           - "debian:stretch"
