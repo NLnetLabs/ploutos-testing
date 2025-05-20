@@ -26,7 +26,7 @@ on:
 jobs:
   full:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'full' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -141,11 +141,11 @@ jobs:
 
   minimal:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'minimal' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
 
   no_test_scripts:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_test_scripts' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
@@ -159,20 +159,12 @@ jobs:
       package_test_rules: pkg/rules/package-test-rules.yml
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   default_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: default_tests_
@@ -182,18 +174,16 @@ jobs:
       docker_repo: ploutos-testing_default_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
-      package_build_rules: pkg/rules/package-build-rules.yml
+      package_build_rules: pkg/rules/package-build-and-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
 
   default_tests_with_upgrades:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests_with_upgrades' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
@@ -212,46 +202,72 @@ jobs:
           - "x86_64"
         test-image:
           - ""
+        deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+        deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+        rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+        rpm_yum_repo: |
+          [nlnetlabs]
+          name=NLnet Labs
+          baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+          enabled=1
         include:
           - pkg: "mytest"
             image: "ubuntu:jammy"
             target: "x86_64"
             mode: "upgrade-from-published"
+            deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
+            deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
           - pkg: "mytest"
             image: "rockylinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "fresh-install"
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_repo: |
+              [nlnetlabs]
+              name=NLnet Labs
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              enabled=1
           - pkg: "mytest"
             image: "rockylinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_repo: |
+              [nlnetlabs]
+              name=NLnet Labs
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              enabled=1
           - pkg: "mytest"
             image: "rockylinux:8"
             target: "x86_64"
             test-image: "almalinux:8"
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_repo: |
+              [nlnetlabs]
+              name=NLnet Labs
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              enabled=1
           - pkg: "mytest"
             image: "rockylinux:8"
             target: "x86_64"
             test-image: "centos:9-Stream"
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_repo: |
+              [nlnetlabs]
+              name=NLnet Labs
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              enabled=1
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   no_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: no_tests_
@@ -261,24 +277,16 @@ jobs:
       docker_repo: ploutos-testing_no_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
-      package_build_rules: pkg/rules/package-build-rules.yml
+      package_build_rules: pkg/rules/package-build-and-test-rules.yml
       package_test_rules: none
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   no_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -288,20 +296,12 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   only_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'only_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: only_docker_
@@ -331,7 +331,7 @@ jobs:
 
   docker_no_secrets:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'docker_no_secrets' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     with:
       artifact_prefix: docker_no_secrets_
 
@@ -344,7 +344,7 @@ jobs:
           
   no_cross:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_cross' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: no_cross_
@@ -358,16 +358,8 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-      deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
-      rpm_yum_repo: |
-        [nlnetlabs]
-        name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
-        enabled=1
 
   check_no_cross:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_cross' }}
@@ -389,7 +381,7 @@ jobs:
   
   test_with_alt_pkg:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_pkg' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_pkg
@@ -415,7 +407,7 @@ jobs:
 
   test_with_alt_cargo_toml:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_cargo_toml' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@upgrade-cargo-generate-rpm 
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_cargo_toml
