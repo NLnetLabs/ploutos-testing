@@ -174,7 +174,7 @@ jobs:
       docker_repo: ploutos-testing_default_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
-      package_build_rules: pkg/rules/package-build-rules.yml
+      package_build_rules: pkg/rules/package-build-and-test-rules.yml
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
@@ -251,7 +251,7 @@ jobs:
       docker_repo: ploutos-testing_no_tests
       docker_build_rules: pkg/rules/docker-build-rules.yml
 
-      package_build_rules: pkg/rules/package-build-rules.yml
+      package_build_rules: pkg/rules/package-build-and-test-rules.yml
       package_test_rules: none
 
       deb_extra_build_packages: libssl-dev
