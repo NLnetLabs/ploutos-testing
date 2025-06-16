@@ -33,7 +33,7 @@ image:
   - "debian:bookworm"
   - "centos:7"
   - "centos:8"
-  - "rockylinux:9"
+  - "almalinux:9"
   - "almalinux:10"
 mode:
   - "fresh-install"

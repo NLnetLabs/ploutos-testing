@@ -50,9 +50,9 @@ jobs:
           - "debian:bullseye"
           - "debian:bookworm"
           - "centos:7"
-          - "rockylinux:8"     # compatible with RHEL/CentOS 8
-          - "rockylinux:9"     # compatible with RHEL 9
-          - "almalinux:10"     # compatible with RHEL 10
+          - "almalinux:8"     # compatible with RHEL/CentOS 8
+          - "almalinux:9"     # compatible with RHEL 9
+          # - "almalinux:10"     # compatible with RHEL 10
         target: x86_64
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
@@ -74,13 +74,13 @@ jobs:
           # the archive that we produce below which is in turn based by default on the container image used to build. We
           # therefore in this case need to specify that the O/S we are building for has a different name than the Docker
           # image we are building it in.
-          - image: "rockylinux:8"
+          - image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             os: "centos:8"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
-          - image: "rockylinux:9"
+          - image: "almalinux:9"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
@@ -201,7 +201,7 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:jammy"
           - "debian:buster"
-          - "rockylinux:8"
+          - "almalinux:8"
         mode:
           - "fresh-install"
         target:
@@ -224,7 +224,7 @@ jobs:
             deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
             deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "fresh-install"
@@ -235,7 +235,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
@@ -246,7 +246,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             target: "x86_64"
             test-image: "almalinux:8"
             rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
@@ -256,7 +256,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             target: "x86_64"
             test-image: "centos:9-Stream"
             rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
@@ -397,14 +397,14 @@ jobs:
           - "mytest"
           - "myalt"
         image:
-          - "rockylinux:9"
+          - "almalinux:9"
         mode:
           - "fresh-install"
         target:
           - "x86_64"
         include:
           - pkg: "mytest"
-            image: "rockylinux:9"
+            image: "almalinux:9"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
@@ -424,7 +424,7 @@ jobs:
         pkg:
           - "app"
         image:
-          - "rockylinux:8"
+          - "almalinux:8"
           - "ubuntu:jammy"
         mode:
           - "fresh-install"

@@ -51,8 +51,8 @@ image:
   - "debian:bullseye"
   - "debian:bookworm"
   - 'centos:7'
-  - 'rockylinux:8'     # compatible with EOL centos:8
-  - 'rockylinux:9'
+  - 'almalinux:8'     # compatible with EOL centos:8
+  - 'almalinux:9'
   - 'almalinux:10'
 target:
   - "x86_64"
@@ -84,13 +84,13 @@ include:
   # therefore in this case need to specify that the O/S we are building for has a different name than the Docker
   # image we are building it in.
   - pkg: "mytest"
-    image: 'rockylinux:8'
+    image: 'almalinux:8'
     os: 'centos:8'
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
 
   - pkg: "mytest"
-    image: 'rockylinux:9'
+    image: 'almalinux:9'
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
 
