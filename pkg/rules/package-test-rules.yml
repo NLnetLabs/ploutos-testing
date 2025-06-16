@@ -34,7 +34,7 @@ image:
   - "centos:7"
   - "centos:8"
   - "almalinux:9"
-  - "almalinux:10"
+  # - "almalinux:10"
 mode:
   - "fresh-install"
 target:

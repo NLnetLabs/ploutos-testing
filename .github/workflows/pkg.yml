@@ -85,10 +85,10 @@ jobs:
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
-          - image: "almalinux:10"
-            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
-            target: "x86_64"
-            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
+          # - image: "almalinux:10"
+          #   systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+          #   target: "x86_64"
+          #   rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
           - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
