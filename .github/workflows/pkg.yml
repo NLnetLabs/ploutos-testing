@@ -52,7 +52,7 @@ jobs:
           - "centos:7"
           - "rockylinux:8"     # compatible with RHEL/CentOS 8
           - "rockylinux:9"     # compatible with RHEL 9
-          - "rockylinux/rockylinux:10"     # compatible with RHEL 10
+          - "almalinux:10"     # compatible with RHEL 10
         target: x86_64
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
@@ -85,7 +85,7 @@ jobs:
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
-          - image: "rockylinux/rockylinux:10"
+          - image: "almalinux:10"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
