@@ -43,8 +43,8 @@ jobs:
         image:
           - "ubuntu:xenial" # ubuntu/18.04
           - "ubuntu:bionic" # ubuntu/20.04
-          - "ubuntu:jammy" # ubuntu/22.04
-          - "ubuntu:noble" # ubuntu/24.04
+          - "ubuntu:jammy"  # ubuntu/22.04
+          - "ubuntu:noble"  # ubuntu/24.04
           - "debian:stretch"
           - "debian:buster"
           - "debian:bullseye"
@@ -52,7 +52,7 @@ jobs:
           - "centos:7"
           - "almalinux:8"     # compatible with RHEL/CentOS 8
           - "almalinux:9"     # compatible with RHEL 9
-          # - "almalinux:10"     # compatible with RHEL 10
+          - "almalinux:10"    # compatible with RHEL 10
         target: x86_64
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
@@ -85,10 +85,10 @@ jobs:
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
-          # - image: "almalinux:10"
-          #   systemd_service_unit_file: "pkg/common/mytest.mytest.*"
-          #   target: "x86_64"
-          #   rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
+          - image: "almalinux:10"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
+            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
           - image: "ubuntu:bionic"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
