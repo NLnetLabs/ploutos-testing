@@ -26,7 +26,7 @@ on:
 jobs:
   full:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'full' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: full_
@@ -43,15 +43,16 @@ jobs:
         image:
           - "ubuntu:xenial" # ubuntu/18.04
           - "ubuntu:bionic" # ubuntu/20.04
-          - "ubuntu:jammy" # ubuntu/22.04
-          - "ubuntu:noble" # ubuntu/24.04
+          - "ubuntu:jammy"  # ubuntu/22.04
+          - "ubuntu:noble"  # ubuntu/24.04
           - "debian:stretch"
           - "debian:buster"
           - "debian:bullseye"
           - "debian:bookworm"
           - "centos:7"
-          - "rockylinux:8"     # compatible with RHEL/CentOS 8
-          - "rockylinux:9"     # compatible with RHEL 9
+          - "almalinux:8"     # compatible with RHEL/CentOS 8
+          - "almalinux:9"     # compatible with RHEL 9
+          - "almalinux:10"    # compatible with RHEL 10
         target: x86_64
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
@@ -73,13 +74,18 @@ jobs:
           # the archive that we produce below which is in turn based by default on the container image used to build. We
           # therefore in this case need to specify that the O/S we are building for has a different name than the Docker
           # image we are building it in.
-          - image: "rockylinux:8"
+          - image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             os: "centos:8"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
 
-          - image: "rockylinux:9"
+          - image: "almalinux:9"
+            systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+            target: "x86_64"
+            rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
+
+          - image: "almalinux:10"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             rpm_rpmlint_check_filters: "no-documentation no-manual-page-for-binary"
@@ -141,11 +147,11 @@ jobs:
 
   minimal:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'minimal' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
 
   no_test_scripts:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_test_scripts' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: no_test_scripts_
@@ -164,7 +170,7 @@ jobs:
 
   default_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: default_tests_
@@ -183,7 +189,7 @@ jobs:
 
   default_tests_with_upgrades:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'default_tests_with_upgrades' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: default_tests_with_upgrades_
@@ -195,7 +201,7 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:jammy"
           - "debian:buster"
-          - "rockylinux:8"
+          - "almalinux:8"
         mode:
           - "fresh-install"
         target:
@@ -218,7 +224,7 @@ jobs:
             deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
             deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "fresh-install"
@@ -229,7 +235,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
@@ -240,7 +246,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             target: "x86_64"
             test-image: "almalinux:8"
             rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
@@ -250,7 +256,7 @@ jobs:
               baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
-            image: "rockylinux:8"
+            image: "almalinux:8"
             target: "x86_64"
             test-image: "centos:9-Stream"
             rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
@@ -267,7 +273,7 @@ jobs:
 
   no_tests:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_tests' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: no_tests_
@@ -286,7 +292,7 @@ jobs:
 
   no_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     with:
       artifact_prefix: no_docker_
       cross_build_args: --no-default-features
@@ -301,7 +307,7 @@ jobs:
 
   only_docker:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'only_docker' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: only_docker_
@@ -331,7 +337,7 @@ jobs:
 
   docker_no_secrets:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'docker_no_secrets' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     with:
       artifact_prefix: docker_no_secrets_
 
@@ -344,7 +350,7 @@ jobs:
           
   no_cross:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'no_cross' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: no_cross_
@@ -381,7 +387,7 @@ jobs:
   
   test_with_alt_pkg:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_pkg' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_pkg
@@ -391,14 +397,14 @@ jobs:
           - "mytest"
           - "myalt"
         image:
-          - "rockylinux:9"
+          - "almalinux:9"
         mode:
           - "fresh-install"
         target:
           - "x86_64"
         include:
           - pkg: "mytest"
-            image: "rockylinux:9"
+            image: "almalinux:9"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
@@ -407,7 +413,7 @@ jobs:
 
   test_with_alt_cargo_toml:
     if: ${{ inputs.single_job == '' || inputs.single_job == 'test_with_alt_cargo_toml' }}
-    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@v7 
+    uses: NLnetLabs/ploutos/.github/workflows/pkg-rust.yml@rocky-linux-10 
     secrets: inherit
     with:
       artifact_prefix: test_with_alt_cargo_toml
@@ -418,7 +424,7 @@ jobs:
         pkg:
           - "app"
         image:
-          - "rockylinux:8"
+          - "almalinux:8"
           - "ubuntu:jammy"
         mode:
           - "fresh-install"

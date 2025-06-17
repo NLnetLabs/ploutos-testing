@@ -33,7 +33,9 @@ image:
   - "debian:bookworm"
   - "centos:7"
   - "centos:8"
-  - "rockylinux:9"
+  - "almalinux:9"
+  # Enable when LXC images for Alma Linux become available
+  # - "almalinux:10"
 mode:
   - "fresh-install"
 target:
