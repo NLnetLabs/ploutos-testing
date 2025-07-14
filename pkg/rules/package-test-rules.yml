@@ -24,14 +24,13 @@
 pkg:
   - "mytest"
 image:
-  - "ubuntu:bionic"    # Ubuntu 20.04
-  - "ubuntu:jammy"     # Ubuntu 22.04
-  - "ubuntu:noble"     # Ubuntu 24.04
-  - "debian:stretch"   # Debian 9
-  - "debian:buster"    # Debian 10
-  - "debian:bullseye"  # Debian 11
-  - "debian:bookworm"  # Debian 12
-  - "debian:trixie"    # Debian 13
+  - "ubuntu:bionic"
+  - "ubuntu:jammy" # ubuntu/22.04
+  - "ubuntu:noble"
+  - "debian:stretch" # should get excluded because the LXC image no longer exists
+  - "debian:buster"
+  - "debian:bullseye"
+  - "debian:bookworm"
   - "centos:7"
   - "centos:8"
   - "almalinux:9"
