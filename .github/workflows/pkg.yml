@@ -41,14 +41,15 @@ jobs:
 
       package_build_rules: |
         image:
-          - "ubuntu:xenial" # ubuntu/18.04
-          - "ubuntu:bionic" # ubuntu/20.04
-          - "ubuntu:jammy"  # ubuntu/22.04
-          - "ubuntu:noble"  # ubuntu/24.04
-          - "debian:stretch"
-          - "debian:buster"
-          - "debian:bullseye"
-          - "debian:bookworm"
+          - "ubuntu:xenial"   # Ubuntu 18.04
+          - "ubuntu:bionic"   # Ubuntu 20.04
+          - "ubuntu:jammy"    # Ubuntu 22.04
+          - "ubuntu:noble"    # Ubuntu 24.04
+          - "debian:stretch"  # Debian 9
+          - "debian:buster"   # Debian 10
+          - "debian:bullseye" # Debian 11
+          - "debian:bookworm" # Debian 12
+          - "debian:trixie"   # Debian 13
           - "centos:7"
           - "almalinux:8"     # compatible with RHEL/CentOS 8
           - "almalinux:9"     # compatible with RHEL 9
@@ -57,6 +58,7 @@ jobs:
         include:
           # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
           # Raspbian 10 is based.
+          # NOTE: Buster is EoL so Ploutos ignores Buster and this no longer does anything...
           - image: "debian:buster"
             target: "arm-unknown-linux-gnueabihf"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
@@ -109,6 +111,9 @@ jobs:
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
           - image: "debian:bookworm"
+            deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
+
+          - image: "debian:trixie"
             deb_extra_lintian_args: "--suppress-tags binary-without-manpage,changelog-not-compressed-with-max-compression"
 
       package_test_rules: pkg/rules/package-test-rules.yml
@@ -201,6 +206,7 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:jammy"
           - "debian:buster"
+          - "debian:bullseye"
           - "almalinux:8"
         mode:
           - "fresh-install"
