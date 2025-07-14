@@ -43,13 +43,14 @@
 pkg:
   - "mytest"
 image:
-  - "ubuntu:bionic"
-  - "ubuntu:jammy"     # ubuntu/22.04
-  - "ubuntu:noble"
-  - "debian:stretch"
-  - "debian:buster"
-  - "debian:bullseye"
-  - "debian:bookworm"
+  - "ubuntu:bionic"    # Ubuntu 20.04
+  - "ubuntu:jammy"     # Ubuntu 22.04
+  - "ubuntu:noble"     # Ubuntu 24.04
+  - "debian:stretch"   # Debian 9
+  - "debian:buster"    # Debian 10
+  - "debian:bullseye"  # Debian 11
+  - "debian:bookworm"  # Debian 12
+  - "debian:trixie"    # Debian 13
   - 'centos:7'
   - 'almalinux:8'     # compatible with EOL centos:8
   - 'almalinux:9'
@@ -59,12 +60,14 @@ target:
 include:
   # package for testing minimal-cross variant selection
   # needs to be both 'cross' and 'minimal' (i.e. an "old" O/S)
+  # NOTE: Bionic is EoL so Ploutos ignores Bionic and this no longer does anything...
   - pkg: "mytest"
     image: "ubuntu:bionic"
     target: "arm-unknown-linux-gnueabihf"
 
   # package for the Raspberry Pi 1b as an ARMv6 cross compiled variant of the Debian Buster upon which
   # Raspbian 10 is based.
+  # NOTE: Buster is EoL so Ploutos ignores Buster and this no longer does anything...
   - pkg: "mytest"
     image: "debian:buster"
     target: "arm-unknown-linux-gnueabihf"
