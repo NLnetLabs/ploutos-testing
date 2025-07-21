@@ -56,6 +56,7 @@ depends = "$auto, passwd, libssl3"
 depends = "$auto, passwd, libssl3"
 
 [package.metadata.deb.variants.debian-trixie]
+depends = "$auto, passwd, libssl3"
 systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = true }
 
 [package.metadata.deb.variants.minimal]
