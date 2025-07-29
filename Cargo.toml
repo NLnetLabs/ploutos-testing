@@ -42,12 +42,22 @@ systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = tr
 # no corresponding sym link in pkg/common/ doesn't actually cause our workflow to fail... Maybe cargo-deb
 # should warn about expected but missing systemd files? Maybe cargo-deb should fallback to the non-variant
 # specific unit files?
+[package.metadata.deb.variants.ubuntu-focal]
+systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = false }
+
 [package.metadata.deb.variants.ubuntu-jammy]
 depends = "$auto, passwd, libssl3"
 maintainer = "Ubuntu Jammy Maintainer <ubuntu.jammy@example.com>"
+systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = false }
 
 [package.metadata.deb.variants.debian-buster-arm-unknown-linux-gnueabihf]
 depends = "adduser, passwd, libc6 (>= 2.27), libssl1.1"
+
+[package.metadata.deb.variants.debian-buster]
+systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = false }
+
+[package.metadata.deb.variants.debian-bullseye]
+systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = false }
 
 [package.metadata.deb.variants.debian-bookworm]
 depends = "$auto, passwd, libssl3"
@@ -57,7 +67,6 @@ depends = "$auto, passwd, libssl3"
 
 [package.metadata.deb.variants.debian-trixie]
 depends = "$auto, passwd, libssl3"
-systemd-units = { unit-name = "mytest", unit-scripts = "pkg/common", enable = true, usr-merge = true }
 
 [package.metadata.deb.variants.minimal]
 depends = "libc6 (>= 2.27), rsync" # a deliberately different dependency that we can test for on older O/S's.
