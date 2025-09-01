@@ -35,8 +35,7 @@ image:
   - "centos:7"
   - "centos:8"
   - "almalinux:9"
-  # Enable when LXC images for Alma Linux become available
-  # - "almalinux:10"
+  - "almalinux:10"
 mode:
   - "fresh-install"
 target:
