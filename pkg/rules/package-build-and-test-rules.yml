@@ -103,8 +103,7 @@ include:
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
 
-  # Enable when LXC images for Alma Linux become available
-  # - pkg: "mytest"
-  #   image: 'almalinux:10'
-  #   systemd_service_unit_file: "pkg/common/mytest.mytest.*"
-  #   target: "x86_64"
+  - pkg: "mytest"
+    image: 'almalinux:10'
+    systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+    target: "x86_64"
