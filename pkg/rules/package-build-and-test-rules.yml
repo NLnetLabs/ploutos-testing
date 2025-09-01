@@ -54,8 +54,7 @@ image:
   - 'centos:7'
   - 'almalinux:8'     # compatible with EOL centos:8
   - 'almalinux:9'
-  # Enable when LXC images for Alma Linux become available
-  # - 'almalinux:10'
+  - 'almalinux:10'
 target:
   - "x86_64"
 deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
@@ -104,8 +103,7 @@ include:
     systemd_service_unit_file: "pkg/common/mytest.mytest.*"
     target: "x86_64"
 
-  # Enable when LXC images for Alma Linux become available
-  # - pkg: "mytest"
-  #   image: 'almalinux:10'
-  #   systemd_service_unit_file: "pkg/common/mytest.mytest.*"
-  #   target: "x86_64"
+  - pkg: "mytest"
+    image: 'almalinux:10'
+    systemd_service_unit_file: "pkg/common/mytest.mytest.*"
+    target: "x86_64"
