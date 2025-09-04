@@ -119,15 +119,15 @@ jobs:
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
       deb_extra_build_packages: libssl-dev
-      deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc"
-      deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
+      deb_apt_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/apt-key.asc"
+      deb_apt_source: "deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/${OS_NAME}/ ${OS_REL} main"
 
       rpm_scriptlets_path: pkg/rpm/scriptlets.toml
-      rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc"
+      rpm_yum_key_url: "https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc"
       rpm_yum_repo: |
         [nlnetlabs]
         name=NLnet Labs
-        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+        baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
         enabled=1
 
   check_full:
@@ -212,62 +212,62 @@ jobs:
           - "x86_64"
         test-image:
           - ""
-        deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-        deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
-        rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+        deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/apt-key.asc'
+        deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+        rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
         rpm_yum_repo: |
           [nlnetlabs]
           name=NLnet Labs
-          baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+          baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
           enabled=1
         include:
           - pkg: "mytest"
             image: "ubuntu:jammy"
             target: "x86_64"
             mode: "upgrade-from-published"
-            deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-            deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+            deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/apt-key.asc'
+            deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
           - pkg: "mytest"
             image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "fresh-install"
-            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
             rpm_yum_repo: |
               [nlnetlabs]
               name=NLnet Labs
-              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
             image: "almalinux:8"
             systemd_service_unit_file: "pkg/common/mytest.mytest.*"
             target: "x86_64"
             mode: "upgrade-from-published"
-            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
             rpm_yum_repo: |
               [nlnetlabs]
               name=NLnet Labs
-              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
             image: "almalinux:8"
             target: "x86_64"
             test-image: "almalinux:8"
-            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
             rpm_yum_repo: |
               [nlnetlabs]
               name=NLnet Labs
-              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
           - pkg: "mytest"
             image: "almalinux:8"
             target: "x86_64"
             test-image: "centos:9-Stream"
-            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+            rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
             rpm_yum_repo: |
               [nlnetlabs]
               name=NLnet Labs
-              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+              baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
               enabled=1
       package_test_scripts_path: pkg/test-scripts/test-<package>.sh
 
