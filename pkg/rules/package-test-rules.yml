@@ -40,28 +40,28 @@ mode:
   - "fresh-install"
 target:
   - "x86_64"
-deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
-rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/apt-key.asc'
+deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
 rpm_yum_repo: |
   [nlnetlabs]
   name=NLnet Labs
-  baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+  baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
   enabled=1
 include:
   - pkg: "mytest"
     image: "ubuntu:jammy"
     mode: "upgrade-from-published"
     target: "x86_64"
-    deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/apt-key.asc'
-    deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
+    deb_apt_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/apt-key.asc'
+    deb_apt_source: 'deb https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/${OS_NAME}/ ${OS_REL} main'
   - pkg: "mytest"
     image: "centos:8"
     mode: "upgrade-from-published"
     target: "x86_64"
-    rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/yum-key.asc'
+    rpm_yum_key_url: 'https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/yum-key.asc'
     rpm_yum_repo: |
       [nlnetlabs]
       name=NLnet Labs
-      baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/main/repo/linux/centos/$releasever/main/$basearch
+      baseurl=https://raw.githubusercontent.com/NLnetLabs/ploutos-testing/refs/heads/main/repo/linux/centos/$releasever/main/$basearch
       enabled=1
