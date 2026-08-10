@@ -1,5 +1,9 @@
 name: Packaging
 
+env:
+  # Per https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
 on:
   push:
     # Don't run on dev branches because when testing changes we may want to
