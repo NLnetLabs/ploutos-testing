@@ -7,7 +7,7 @@ members = [
 [package]
 name = "mytest"
 description = "Long enough for Lintian, short enough and without period for rpmlint"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Some Author <some.author@example.com>"]
 homepage = "https://github.com/NLnetLabs/ploutos-testing"
